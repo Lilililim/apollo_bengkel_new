@@ -8,10 +8,10 @@ enum KategoriProduct {
 }
 
 class Product {
-  //ubah
+  //tambah stock?
   final KategoriProduct kategoriProduct;
   final String id, nama, photoName, deskripsi;
-  final num harga;
+  final num harga, stock;
   final num promo;
   String? recipeId = '';
   List<String> bahan = [], langkah = [];
@@ -25,6 +25,7 @@ class Product {
     required this.photoName,
     required this.harga,
     required this.promo,
+    required this.stock,
     this.recipeId,
   });
 
@@ -37,6 +38,7 @@ class Product {
       photoName: map['photo_name'],
       kategoriProduct: stringToKategori(map['category']),
       promo: map['promo'],
+      stock: map['stock'],
       recipeId: map['resep_id'],
     );
   }
