@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "538658758544",
+    "project_id": "apolo-bengkel",
+    "storage_bucket": "apolo-bengkel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538658758544:android:6f60235991b5a969745d15",
+        "android_client_info": {
+          "package_name": "com.example.apollo_bengkel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538658758544-igq48f0jb45m9mrv1ajassf0a9crlo55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtXKMtBq0KMcWkQmiNZBnvbo5-dkGLZlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538658758544-igq48f0jb45m9mrv1ajassf0a9crlo55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
