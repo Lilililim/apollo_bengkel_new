@@ -17,7 +17,6 @@ class Product {
   List<String> bahan = [], langkah = [];
 
   Product({
-    //ubah
     required this.id,
     required this.nama,
     required this.kategoriProduct,

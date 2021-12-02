@@ -119,7 +119,7 @@ class _PaketProductTileState extends State<PaketProductTile> {
                         return FittedBox(
                           fit: BoxFit.fill,
                           child: Image.asset(
-                            'assets/logo.jpg',
+                            'assets/logo.png',
                             fit: BoxFit.fill,
                           ),
                         );
@@ -128,7 +128,7 @@ class _PaketProductTileState extends State<PaketProductTile> {
                       return FittedBox(
                         fit: BoxFit.fill,
                         child: Image.asset(
-                          'assets/logo.jpg',
+                          'assets/logo.png',
                           fit: BoxFit.fill,
                         ),
                       );

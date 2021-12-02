@@ -33,7 +33,7 @@ class _ProductTileState extends State<ProductTile> {
     var kategori = Product.kategoriToString(product.kategoriProduct);
     var photoName = product.photoName;
     var ref = firestorage.refFromURL(
-        'gs://puja-sari.appspot.com/app/foto_produk/$kategori/$photoName');
+        'gs://apolo_bengkel.appspot.com/app/foto_spare_part/$kategori/$photoName');
     return ref.getDownloadURL();
 
     // return Future.value('');
@@ -118,7 +118,7 @@ class _ProductTileState extends State<ProductTile> {
                         return FittedBox(
                           fit: BoxFit.fill,
                           child: Image.asset(
-                            'assets/logo.jpg',
+                            'assets/logo.png',
                             fit: BoxFit.fill,
                           ),
                         );
@@ -127,7 +127,7 @@ class _ProductTileState extends State<ProductTile> {
                       return FittedBox(
                         fit: BoxFit.fill,
                         child: Image.asset(
-                          'assets/logo.jpg',
+                          'assets/logo.png',
                           fit: BoxFit.fill,
                         ),
                       );
