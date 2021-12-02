@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-//tes git
+
 class SuccessBuyPage extends StatefulWidget {
   const SuccessBuyPage({
     Key? key,
