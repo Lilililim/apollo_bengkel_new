@@ -642,7 +642,7 @@ class _HomePageState extends State<HomePage> {
               /// Section Jasa
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 80.0,
+                  top: 100.0,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10.0),
@@ -682,7 +682,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 10.0,
+                  top: 20.0,
                 ),
                 child: Container(
                   height: 100,
