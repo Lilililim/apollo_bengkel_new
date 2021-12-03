@@ -47,10 +47,6 @@ class _HomePageState extends State<HomePage> {
         }).then((_) => setState(() {}));
   }
 
-  void _navigateToCheckoutPage() {
-    Navigator.pushNamed(context, '/checkout_page').then((_) => setState(() {}));
-  }
-
   void _navigateToTransactionHistory() {
     Navigator.pushNamed(context, '/order_histories_page');
   }
@@ -143,9 +139,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      actions: <Widget>[
-        ShoppingCartButton(onPressed: _navigateToCheckoutPage),
-      ],
     );
   }
 
