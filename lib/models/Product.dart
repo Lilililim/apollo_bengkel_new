@@ -1,5 +1,4 @@
 enum KategoriProduct {
-  //ubah
   Oli,
   Oli_gardan,
   Grease_cvt,
@@ -58,12 +57,14 @@ class Product {
 
   static KategoriProduct stringToKategori(String kategori) {
     var kategoriMap = <String, KategoriProduct>{
-      //ubah
-      'daging': KategoriProduct.Daging,
-      'buah': KategoriProduct.Buah,
-      'sayur': KategoriProduct.Sayur,
-      'rempah': KategoriProduct.Rempah,
-      'paket': KategoriProduct.Paket,
+      'ban': KategoriProduct.Ban,
+      'oli': KategoriProduct.Oli,
+      'oli_gardan': KategoriProduct.Oli_gardan,
+      'grease_cvt': KategoriProduct.Grease_cvt,
+      'jasa_ban': KategoriProduct.Jasa_ban,
+      'jasa_oli': KategoriProduct.Jasa_oli,
+      'jasa_injeksi': KategoriProduct.Jasa_injeksi,
+      'jasa_cvt': KategoriProduct.Jasa_cvt,
     };
 
     if (!kategoriMap.keys.toList().any((e) => e == kategori)) {
@@ -77,12 +78,14 @@ class Product {
 
   static String kategoriToString(KategoriProduct kategoriProduct) {
     var kategoriMap = <KategoriProduct, String>{
-      //ubah
-      KategoriProduct.Daging: 'daging',
-      KategoriProduct.Buah: 'buah',
-      KategoriProduct.Sayur: 'sayur',
-      KategoriProduct.Rempah: 'rempah',
-      KategoriProduct.Paket: 'paket',
+      KategoriProduct.Ban: 'ban',
+      KategoriProduct.Oli: 'oli',
+      KategoriProduct.Oli_gardan: 'oli_gardan',
+      KategoriProduct.Grease_cvt: 'grease_cvt',
+      KategoriProduct.Jasa_ban: 'jasa_ban',
+      KategoriProduct.Jasa_oli: 'jasa_oli',
+      KategoriProduct.Jasa_cvt: 'jasa_cvt',
+      KategoriProduct.Jasa_injeksi: 'jasa_injeksi',
     };
 
     if (!kategoriMap.keys.toList().any((e) => e == kategoriProduct)) {
