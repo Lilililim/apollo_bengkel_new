@@ -811,6 +811,7 @@ class _HomePageState extends State<HomePage> {
                                   'Service Injeksi',
                                   style: TextStyle(
                                     color: Colors.red,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ],
@@ -855,6 +856,7 @@ class _HomePageState extends State<HomePage> {
                                   'Service CVT',
                                   style: TextStyle(
                                     color: Colors.brown[400],
+                                    fontSize: 10,
                                   ),
                                 ),
                               ],
