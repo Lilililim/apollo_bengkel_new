@@ -227,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       title: Text(
-                        'Ban',
+                        'Oli',
                       ),
                       leading: Icon(
                         RpgAwesome.meat,
@@ -239,7 +239,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       title: Text(
-                        'Oli',
+                        'Grease',
                       ),
                       leading: Icon(
                         FontAwesome5.carrot,
@@ -251,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       title: Text(
-                        'Part',
+                        'Discpad',
                       ),
                       leading: Icon(
                         FontAwesome5.apple_alt,
@@ -263,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       title: Text(
-                        'Lampu',
+                        'Oli Gardan',
                       ),
                       leading: Icon(
                         RpgAwesome.bubbling_potion,
@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       title: Text(
-                        'Oli_Gardan',
+                        'Jasa',
                       ),
                       leading: Icon(
                         Linecons.food,
