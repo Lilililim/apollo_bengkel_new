@@ -1,10 +1,13 @@
 enum KategoriProduct {
   //ubah
-  Daging,
-  Sayur,
-  Buah,
-  Rempah,
-  Paket,
+  Oli,
+  Oli_gardan,
+  Grease_cvt,
+  Ban,
+  Jasa_ban,
+  Jasa_oli,
+  Jasa_injeksi,
+  Jasa_cvt,
 }
 
 class Product {

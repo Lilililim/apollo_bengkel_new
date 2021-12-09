@@ -128,7 +128,7 @@ class _ProfilePageState extends State<ProfilePage> {
               /// ambil data user
 
               var ref = firestorage
-                  .refFromURL('gs://puja-sari.appspot.com/user_photos');
+                  .refFromURL('gs://apolo_bengkel.appspot.com/user_photos');
 
               /// upload file ke firebase storage
               await ref
@@ -231,7 +231,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     child: CircleAvatar(
                                       child: _user?.photoURL != null
                                           ? Image.network(_user!.photoURL!)
-                                          : Image.asset('assets/logo.jpg'),
+                                          : Image.asset('assets/logo.png'),
                                       radius: 40,
                                     ),
                                   ),
