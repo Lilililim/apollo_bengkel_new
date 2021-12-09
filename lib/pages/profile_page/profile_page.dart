@@ -128,7 +128,7 @@ class _ProfilePageState extends State<ProfilePage> {
               /// ambil data user
 
               var ref = firestorage
-                  .refFromURL('gs://apollo_bengkel.appspot.com/user_photos');
+                  .refFromURL('gs://apolo_bengkel.appspot.com/user_photos');
 
               /// upload file ke firebase storage
               await ref
