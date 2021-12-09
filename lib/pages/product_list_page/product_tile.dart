@@ -31,7 +31,7 @@ class _ProductTileState extends State<ProductTile> {
   Future<String> _fetchImageUrl() {
     // *(ini di comment untuk hemat kuota firebase)
     var kategori = Product.kategoriToString(product.kategoriProduct);
-    var photoName = product.photoName;
+    var photoName = product.photoNamepr;
     var ref = firestorage.refFromURL(
         'gs://apolo_bengkel.appspot.com/app/foto_spare_part/$kategori/$photoName');
     return ref.getDownloadURL();
@@ -40,7 +40,7 @@ class _ProductTileState extends State<ProductTile> {
   }
 
   int hargaSetelahDiskon() {
-    return (product.harga - product.harga * product.promo).toInt();
+    return (product.hargapr - product.hargapr * product.promo).toInt();
   }
 
   int persenDiskon() {
@@ -148,7 +148,7 @@ class _ProductTileState extends State<ProductTile> {
                 bottom: 10.0,
               ),
               child: Text(
-                product.nama,
+                product.namapr,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -192,7 +192,7 @@ class _ProductTileState extends State<ProductTile> {
                       ),
                     ),
                     Text(
-                      '${rupiahFormatter.format(product.harga)}',
+                      '${rupiahFormatter.format(product.hargapr)}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
