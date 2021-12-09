@@ -364,7 +364,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        'Produk',
+                        'Katalog Part',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
@@ -434,7 +434,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.pink[300],
                                 ),
                                 Text(
-                                  'Ban',
+                                  'Oli',
                                   style: TextStyle(
                                     color: Colors.pink[300],
                                   ),
@@ -478,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.orange,
                                 ),
                                 Text(
-                                  'Oli',
+                                  'Grease',
                                   style: TextStyle(
                                     color: Colors.orange,
                                   ),
@@ -522,7 +522,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.red,
                                 ),
                                 Text(
-                                  'Part',
+                                  'Discpad',
                                   style: TextStyle(
                                     color: Colors.red,
                                   ),
@@ -566,7 +566,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.brown[400],
                                 ),
                                 Text(
-                                  'Lampu',
+                                  'Oli Gardan',
                                   style: TextStyle(
                                     color: Colors.brown[400],
                                   ),
@@ -650,7 +650,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        'Jasa',
+                        'Booking Service',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
@@ -720,7 +720,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.pink[300],
                                 ),
                                 Text(
-                                  'Ban',
+                                  'Ganti Oli',
                                   style: TextStyle(
                                     color: Colors.pink[300],
                                   ),
@@ -764,7 +764,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.orange,
                                 ),
                                 Text(
-                                  'Oli',
+                                  'Ganti Ban',
                                   style: TextStyle(
                                     color: Colors.orange,
                                   ),
@@ -808,7 +808,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.red,
                                 ),
                                 Text(
-                                  'Part',
+                                  'Service Injeksi',
                                   style: TextStyle(
                                     color: Colors.red,
                                   ),
@@ -852,7 +852,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.brown[400],
                                 ),
                                 Text(
-                                  'Lampu',
+                                  'Service CVT',
                                   style: TextStyle(
                                     color: Colors.brown[400],
                                   ),
