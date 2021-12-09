@@ -49,7 +49,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
         .then((doc) => UserData.fromJSON(doc.data()));
   }
 
-  num _hargaSetelahDiskon(Product p) => p.harga - p.harga * p.promo;
+  num _hargaSetelahDiskon(Product p) => p.hargapr - p.hargapr * p.promo;
 
   num _hargaTotalCheckoutItem(CheckoutItemData c) =>
       _hargaSetelahDiskon(c.product) * c.amount;
@@ -117,7 +117,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                         child: Image.network(e.photoDownloadURL),
                       ),
                       title: Text(
-                        '${e.product.nama} (x${e.amount})',
+                        '${e.product.namapr} (x${e.amount})',
                         style: TextStyle(
                           color: Colors.blue,
                         ),

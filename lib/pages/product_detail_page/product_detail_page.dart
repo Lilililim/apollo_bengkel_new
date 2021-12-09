@@ -1,4 +1,4 @@
-import 'package:apollo_bengkel/components/add_to_cart_layout.dart';
+import 'package:apollo_bengkel/components/add_to_cart_layout_pr.dart';
 import 'package:apollo_bengkel/components/shopping_cart_button.dart';
 import 'package:apollo_bengkel/firebase.dart';
 import 'package:apollo_bengkel/models/Product.dart';
@@ -46,10 +46,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     super.initState();
     _checkoutAnimationController.forward(from: 0);
     _buildImage();
-
-    if (product.recipeId != null) {
-      _fetchResep();
-    }
   }
 
   void _backToCatalog() {
@@ -63,33 +59,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   Future<String> _fetchImageUrl() {
     // * uncomment these lines to fetch actual photo (ini di comment untuk hemat kuota firebase)
     var kategori = Product.kategoriToString(product.kategoriProduct);
-    var photoName = product.photoName;
+    var photoName = product.photoNamepr;
 
     var ref = firestorage.refFromURL(
       'gs://puja-sari.appspot.com/app/foto_produk/$kategori/$photoName',
     );
 
     return ref.getDownloadURL();
-  }
-
-  // dipanggil hanya jika product merupakan product paket (mempunyai resep)
-  Future<void> _fetchResep() async {
-    if (product.recipeId != null) {
-      await firestore
-          .collection('/resep')
-          .doc(product.recipeId)
-          .get()
-          .then((doc) {
-        var data = doc.data()!;
-
-        setState(() {
-          product.bahan =
-              List.from(data['bahan']).map((e) => e.toString()).toList();
-          product.langkah =
-              List.from(data['langkah']).map((e) => e.toString()).toList();
-        });
-      });
-    }
   }
 
   Future<void> _refreshPage() async {
@@ -116,7 +92,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
           return FittedBox(
             fit: BoxFit.fill,
             child: Image.asset(
-              'assets/logo.jpg',
+              'assets/logo.png',
               fit: BoxFit.fill,
             ),
           );
@@ -196,76 +172,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       left: 20,
                     ),
                     child: Text(
-                      product.deskripsi,
+                      product.deskripsipr,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                       ),
                     ),
                   ),
-
-                  if (product.kategoriProduct ==
-                      KategoriProduct.Paket) ...<Widget>[
-                    /// deskripsi
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 10,
-                        left: 20,
-                      ),
-                      child: Text(
-                        'Bahan',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    ...product.bahan.asMap().entries.map(
-                          (e) => Padding(
-                            padding: const EdgeInsets.only(
-                              top: 5.0,
-                              left: 20,
-                            ),
-                            child: Text(
-                              '${e.key + 1}.\t\t${e.value}',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                    /// langkah
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 10,
-                        left: 20,
-                      ),
-                      child: Text(
-                        'Langkah',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    ...product.langkah.asMap().entries.map(
-                          (e) => Padding(
-                            padding: const EdgeInsets.only(
-                              top: 10.0,
-                              left: 20,
-                            ),
-                            child: Text(
-                              '${e.key + 1}.\t\t${e.value}',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                  ],
                   SizedBox(
                     height: 130,
                   ),
@@ -296,7 +209,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         ),
       ),
       title: Text(
-        product.nama,
+        product.namapr,
         style: TextStyle(
           color: Colors.blue,
         ),

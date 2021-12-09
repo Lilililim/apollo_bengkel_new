@@ -30,10 +30,10 @@ class _PaketProductTileState extends State<PaketProductTile> {
   Future<String> _fetchImageUrl() {
     // * uncomment these line to fetch image (hemat limit kuota firebase storage)
     var kategori = Product.kategoriToString(product.kategoriProduct);
-    var photoName = product.photoName;
+    var photoName = product.photoNamepr;
     var ref = firestorage.refFromURL(
       //ganti
-      'gs://puja-sari.appspot.com/app/foto_produk/$kategori/$photoName',
+      'gs://apolo_bengke;.appspot.com/app/foto_produk/$kategori/$photoName',
     );
 
     return ref.getDownloadURL();
@@ -41,7 +41,7 @@ class _PaketProductTileState extends State<PaketProductTile> {
   }
 
   int hargaSetelahDiskon() {
-    return (product.harga - product.harga * product.promo).toInt();
+    return (product.hargapr - product.hargapr * product.promo).toInt();
   }
 
   int persenDiskon() {
@@ -149,7 +149,7 @@ class _PaketProductTileState extends State<PaketProductTile> {
                 bottom: 10.0,
               ),
               child: Text(
-                product.nama,
+                product.namapr,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -193,7 +193,7 @@ class _PaketProductTileState extends State<PaketProductTile> {
                       ),
                     ),
                     Text(
-                      '${rupiahFormatter.format(product.harga)}',
+                      '${rupiahFormatter.format(product.hargapr)}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

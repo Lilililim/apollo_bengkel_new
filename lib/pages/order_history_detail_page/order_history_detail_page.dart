@@ -61,7 +61,7 @@ class _OrderHistoryDetailPageState extends State<OrderHistoryDetailPage> {
             /// ambil url foto dari firebase storage
             checkoutItemData.photoDownloadURL = await firestorage
                 .refFromURL(
-                    'gs://puja-sari.appspot.com/app/foto_produk/${Product.kategoriToString(checkoutItemData.product.kategoriProduct)}/${checkoutItemData.product.photoName}')
+                    'gs://apolo_bengkel.appspot.com/app/foto_produk/${Product.kategoriToString(checkoutItemData.product.kategoriProduct)}/${checkoutItemData.product.photoNamepr}')
                 .getDownloadURL();
 
             setState(() {
@@ -72,7 +72,7 @@ class _OrderHistoryDetailPageState extends State<OrderHistoryDetailPage> {
   }
 
   /// untuk menghitung harga product setelah diskon
-  num _hargaSetelahDiskon(Product p) => p.harga - p.harga * p.promo;
+  num _hargaSetelahDiskon(Product p) => p.hargapr - p.hargapr * p.promo;
 
   /// untuk menghitung harga product setelah diskon dikali banyak item
   num _hargaTotalCheckoutItem(CheckoutItemData c) =>
@@ -259,7 +259,7 @@ class _OrderHistoryDetailPageState extends State<OrderHistoryDetailPage> {
                       child: Image.network(e.photoDownloadURL),
                     ),
                     title: Text(
-                      '${e.product.nama} (x${e.amount})',
+                      '${e.product.namapr} (x${e.amount})',
                       style: TextStyle(
                         color: Colors.blue,
                       ),

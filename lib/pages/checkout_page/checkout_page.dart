@@ -53,7 +53,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         );
 
         // ambil data download url
-        var photoName = product.photoName;
+        var photoName = product.photoNamepr;
         var kategori = Product.kategoriToString(product.kategoriProduct);
 
         var refURL =
@@ -166,7 +166,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   }
 
   num _hargaSetelahDiskon(Product product) =>
-      product.harga - product.harga * product.promo;
+      product.hargapr - product.hargapr * product.promo;
 
   // untuk hitung total harga dari item-item yang di checkout
   num _hargaTotal(List<CheckoutItemData> _c) => _c.fold(
@@ -237,7 +237,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ),
                   title: Text(
-                    itemData.product.nama,
+                    itemData.product.namapr,
                     style: TextStyle(
                       color: Colors.blue,
                     ),
