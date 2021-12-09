@@ -45,7 +45,7 @@ class _ProductGridViewState extends State<ProductGridView> {
   Future<List<Product>> _getProducts() async {
     List<Product> products = [];
     QuerySnapshot<Map<String, dynamic>> snapshot;
-    var collection = firestore.collection('/products');
+    var collection = firestore.collection('/product');
 
     /// jika user ingin melihat semua product:
     if (kategoriProductListPage == KategoriProductListPage.All) {
@@ -60,7 +60,7 @@ class _ProductGridViewState extends State<ProductGridView> {
       print('sedang di kategori: $stringifiedKategori');
 
       snapshot = await collection
-          .where('category', isEqualTo: stringifiedKategori)
+          .where('category_pr', isEqualTo: stringifiedKategori)
           .get();
     }
 

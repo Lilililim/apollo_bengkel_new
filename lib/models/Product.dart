@@ -10,10 +10,10 @@ enum KategoriProduct {
 }
 
 class Product {
-  final KategoriProduct kategoriProduct, kategoriJasa;
-  final String id, namapr, photoNamepr, deskripsipr, namajs, photoNamejs, deskripsijs;
-  final num hargapr, stockpr, hargajs;
-  final num promo, promojs;
+  final KategoriProduct kategoriProduct; //kategoriJasa;
+  final String id, namapr, photoNamepr, deskripsipr; //namajs, photoNamejs, deskripsijs;
+  final num hargapr, stockpr; //hargajs;
+  final num promo; //promojs;
   String? jasaId = '';
 
   Product({
@@ -25,12 +25,12 @@ class Product {
     required this.hargapr,
     required this.promo,
     required this.stockpr,
-    required this.namajs,
-    required this.kategoriJasa,
-    required this.deskripsijs,
-    required this.photoNamejs,
-    required this.hargajs,
-    required this.promojs,
+   // required this.namajs,
+   // required this.kategoriJasa,
+   // required this.deskripsijs,
+   // required this.photoNamejs,
+   // required this.hargajs,
+   // required this.promojs,
     this.jasaId,
   });
 
@@ -40,17 +40,17 @@ class Product {
       namapr: map['nama_pr'],
       deskripsipr: map['deskripsi_pr'],
       hargapr: map['harga_pr'],
-      photoNamepr: map['photo_name'],
+      photoNamepr: map['photo_pr'],
       kategoriProduct: stringToKategori(map['category_pr']),
       promo: map['promo'],
       stockpr: map['stock_pr'],
       jasaId: map['jasa_id'],
-      namajs: map['nama_js'],
-      deskripsijs: map['deskripsi_js'],
-      hargajs: map['harga_js'],
-      photoNamejs: map['photo_js'],
-      kategoriJasa: stringToKategori(map['category_js']),
-      promojs: map['promo_js'],
+      //namajs: map['nama_js'],
+      //deskripsijs: map['deskripsi_js'],
+      //hargajs: map['harga_js'],
+      //photoNamejs: map['photo_js'],
+      //kategoriJasa: stringToKategori(map['category_js']),
+      //promojs: map['promo_js'],
     );
   }
 

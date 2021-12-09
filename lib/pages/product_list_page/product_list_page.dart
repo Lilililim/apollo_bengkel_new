@@ -62,6 +62,9 @@ class _ProductListPageState extends State<ProductListPage>
           ProductGridView(
             kategoriProductListPage: KategoriProductListPage.Oli_gardan,
           ),
+          ProductGridView(
+            kategoriProductListPage: KategoriProductListPage.Jasa_oli,
+          ),
         ]
             .map(
               (e) => Padding(

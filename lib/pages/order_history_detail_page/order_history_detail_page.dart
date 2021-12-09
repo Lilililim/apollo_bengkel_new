@@ -41,7 +41,7 @@ class _OrderHistoryDetailPageState extends State<OrderHistoryDetailPage> {
 
   Future<void> _getCheckoutItemDatas() async {
     var checkoutItems = checkoutHistoryItem.checkoutItems;
-    var query = firestore.collection('products').where(FieldPath.documentId,
+    var query = firestore.collection('product').where(FieldPath.documentId,
         whereIn: checkoutItems.map((e) => e.itemId).toList());
 
     /// ambil semua product di checkout, dan ubah ke CheckoutItemData

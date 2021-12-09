@@ -31,9 +31,9 @@ class _ProductTileState extends State<ProductTile> {
   Future<String> _fetchImageUrl() {
     // *(ini di comment untuk hemat kuota firebase)
     var kategori = Product.kategoriToString(product.kategoriProduct);
-    var photoName = product.photoNamepr;
+     var photoName = product.photoNamepr;
     var ref = firestorage.refFromURL(
-        'gs://apolo_bengkel.appspot.com/app/foto_spare_part/$kategori/$photoName');
+        'gs://apolo_bengkel.appspot.com/app/foto_produk/$kategori/$photoName');
     return ref.getDownloadURL();
 
     // return Future.value('');
