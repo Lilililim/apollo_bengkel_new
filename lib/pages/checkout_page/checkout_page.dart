@@ -57,7 +57,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         var kategori = Product.kategoriToString(product.kategoriProduct);
 
         var refURL =
-            'gs://apolo_bengkel.appspot.com/app/foto_produk/$kategori/$photoName';
+            'gs://apolo-bengkel.appspot.com/app/foto_produk/$kategori/$photoName';
 
         var photoDownloadURL =
             await firestorage.refFromURL(refURL).getDownloadURL();

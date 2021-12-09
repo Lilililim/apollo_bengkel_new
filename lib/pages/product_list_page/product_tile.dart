@@ -33,7 +33,7 @@ class _ProductTileState extends State<ProductTile> {
     var kategori = Product.kategoriToString(product.kategoriProduct);
     var photoName = product.photoNamepr;
     var ref = firestorage.refFromURL(
-        'gs://apolo_bengkel.appspot.com/app/foto_produk/$kategori/$photoName');
+        'gs://apolo-bengkel.appspot.com/app/foto_produk/$kategori/$photoName');
     return ref.getDownloadURL();
 
      //return Future.value('');

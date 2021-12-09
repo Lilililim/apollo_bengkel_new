@@ -33,7 +33,7 @@ class _PaketProductTileState extends State<PaketProductTile> {
     var photoName = product.photoNamepr;
     var ref = firestorage.refFromURL(
       //ganti
-      'gs://apolo_bengkel.appspot.com/app/foto_produk/$kategori/$photoName',
+      'gs://apolo-bengkel.appspot.com/app/foto_produk/$kategori/$photoName',
     );
 
     return ref.getDownloadURL();

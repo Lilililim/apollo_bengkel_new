@@ -61,7 +61,7 @@ class _OrderHistoryDetailPageState extends State<OrderHistoryDetailPage> {
             /// ambil url foto dari firebase storage
             checkoutItemData.photoDownloadURL = await firestorage
                 .refFromURL(
-                    'gs://apolo_bengkel.appspot.com/app/foto_produk/${Product.kategoriToString(checkoutItemData.product.kategoriProduct)}/${checkoutItemData.product.photoNamepr}')
+                    'gs://apolo-bengkel.appspot.com/app/foto_produk/${Product.kategoriToString(checkoutItemData.product.kategoriProduct)}/${checkoutItemData.product.photoNamepr}')
                 .getDownloadURL();
 
             setState(() {
