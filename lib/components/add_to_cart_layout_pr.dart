@@ -35,7 +35,7 @@ class _AddToCartLayoutState extends State<AddToCartLayout> {
   int banyak = 1;
 
   num hargaTotal() =>
-      ((product.harga - product.harga * product.promo) * banyak).toInt();
+      ((product.hargapr - product.hargapr * product.promo) * banyak).toInt();
 
   dynamic _banyakProductBerubah(dynamic v) {
     setState(() {
