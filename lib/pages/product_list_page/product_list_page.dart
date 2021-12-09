@@ -51,16 +51,13 @@ class _ProductListPageState extends State<ProductListPage>
             kategoriProductListPage: KategoriProductListPage.All,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Ban,
-          ),
-          ProductGridView(
             kategoriProductListPage: KategoriProductListPage.Oli,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Part,
+            kategoriProductListPage: KategoriProductListPage.Grease_cvt,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Lampu,
+            kategoriProductListPage: KategoriProductListPage.Oli_gardan,
           ),
           ProductGridView(
             kategoriProductListPage: KategoriProductListPage.Oli_gardan,

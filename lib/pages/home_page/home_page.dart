@@ -442,7 +442,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Ban,
+                              KategoriProductListPage.Oli,
                             ),
                           ),
                         ),
@@ -478,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.orange,
                                 ),
                                 Text(
-                                  'Grease',
+                                  'Ban',
                                   style: TextStyle(
                                     color: Colors.orange,
                                   ),
@@ -486,7 +486,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Oli,
+                              KategoriProductListPage.Ban,
                             ),
                           ),
                         ),
@@ -522,7 +522,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.red,
                                 ),
                                 Text(
-                                  'Discpad',
+                                  'Grease CVT',
                                   style: TextStyle(
                                     color: Colors.red,
                                   ),
@@ -530,7 +530,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Part,
+                              KategoriProductListPage.Grease_cvt,
                             ),
                           ),
                         ),
