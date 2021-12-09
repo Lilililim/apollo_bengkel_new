@@ -32,12 +32,10 @@ class _ProductGridViewState extends State<ProductGridView> {
     KategoriProductListPage kategoriProductListPage,
   ) {
     var map = <KategoriProductListPage, String>{
-      //ditambah??
       KategoriProductListPage.All: 'all',
       KategoriProductListPage.Oli: 'oli',
       KategoriProductListPage.Ban: 'ban',
-      KategoriProductListPage.Part: 'part',
-      KategoriProductListPage.Lampu: 'lampu',
+      KategoriProductListPage.Grease_cvt: 'grease_cvt',
       KategoriProductListPage.Oli_gardan: 'oli_gardan',
     };
 

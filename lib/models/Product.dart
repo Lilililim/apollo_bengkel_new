@@ -10,7 +10,6 @@ enum KategoriProduct {
 }
 
 class Product {
-  //tambah stock?
   final KategoriProduct kategoriProduct, kategoriJasa;
   final String id, namapr, photoNamepr, deskripsipr, namajs, photoNamejs, deskripsijs;
   final num hargapr, stockpr, hargajs;

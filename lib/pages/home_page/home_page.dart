@@ -234,31 +234,31 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.pink[300],
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Ban,
+                        KategoriProductListPage.Oli,
                       ),
                     ),
                     ListTile(
                       title: Text(
-                        'Grease',
+                        'Ban',
                       ),
                       leading: Icon(
                         FontAwesome5.carrot,
                         color: Colors.orange,
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Oli,
+                        KategoriProductListPage.Ban,
                       ),
                     ),
                     ListTile(
                       title: Text(
-                        'Discpad',
+                        'Grease CVT',
                       ),
                       leading: Icon(
                         FontAwesome5.apple_alt,
                         color: Colors.red,
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Part,
+                        KategoriProductListPage.Grease_cvt,
                       ),
                     ),
                     ListTile(
@@ -270,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.brown[400],
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Lampu,
+                        KategoriProductListPage.Oli_gardan,
                       ),
                     ),
                     ListTile(
@@ -574,7 +574,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Lampu,
+                              KategoriProductListPage.Oli_gardan,
                             ),
                           ),
                         ),
@@ -817,7 +817,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Part,
+                              KategoriProductListPage.Oli,
                             ),
                           ),
                         ),
@@ -862,7 +862,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Lampu,
+                              KategoriProductListPage.Oli,
                             ),
                           ),
                         ),
