@@ -60,10 +60,10 @@ class Product {
       'oli': KategoriProduct.Oli,
       'oli_gardan': KategoriProduct.Oli_gardan,
       'grease_cvt': KategoriProduct.Grease_cvt,
-      'jasa_ban': KategoriProduct.Jasa_ban,
-      'jasa_oli': KategoriProduct.Jasa_oli,
-      'jasa_injeksi': KategoriProduct.Jasa_injeksi,
-      'jasa_cvt': KategoriProduct.Jasa_cvt,
+      //'jasa_ban': KategoriProduct.Jasa_ban,
+      //'jasa_oli': KategoriProduct.Jasa_oli,
+      //'jasa_injeksi': KategoriProduct.Jasa_injeksi,
+      //'jasa_cvt': KategoriProduct.Jasa_cvt,
     };
 
     if (!kategoriMap.keys.toList().any((e) => e == kategori)) {
@@ -81,10 +81,10 @@ class Product {
       KategoriProduct.Oli: 'oli',
       KategoriProduct.Oli_gardan: 'oli_gardan',
       KategoriProduct.Grease_cvt: 'grease_cvt',
-      KategoriProduct.Jasa_ban: 'jasa_ban',
-      KategoriProduct.Jasa_oli: 'jasa_oli',
-      KategoriProduct.Jasa_cvt: 'jasa_cvt',
-      KategoriProduct.Jasa_injeksi: 'jasa_injeksi',
+     // KategoriProduct.Jasa_ban: 'jasa_ban',
+     // KategoriProduct.Jasa_oli: 'jasa_oli',
+     // KategoriProduct.Jasa_cvt: 'jasa_cvt',
+     // KategoriProduct.Jasa_injeksi: 'jasa_injeksi',
     };
 
     if (!kategoriMap.keys.toList().any((e) => e == kategoriProduct)) {
