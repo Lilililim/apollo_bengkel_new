@@ -34,7 +34,7 @@ class _ProductListPageState extends State<ProductListPage>
     super.initState();
     _tabController = TabController(
       initialIndex: kategoriToInt(kategoriProduk)!,
-      length: 6,
+      length: 5,
       vsync: this,
     );
   }
@@ -57,13 +57,10 @@ class _ProductListPageState extends State<ProductListPage>
             kategoriProductListPage: KategoriProductListPage.Grease_cvt,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Oli_gardan,
+            kategoriProductListPage: KategoriProductListPage.Ban,
           ),
           ProductGridView(
             kategoriProductListPage: KategoriProductListPage.Oli_gardan,
-          ),
-          ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Jasa_oli,
           ),
         ]
             .map(
@@ -137,12 +134,6 @@ class _ProductListPageState extends State<ProductListPage>
               child: Icon(
                 RpgAwesome.bubbling_potion,
                 color: Colors.brown[400],
-              ),
-            ),
-            Tab(
-              child: Icon(
-                Linecons.food,
-                color: Colors.yellow[800],
               ),
             ),
           ]
