@@ -66,6 +66,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     );
 
     return ref.getDownloadURL();
+    //return Future.value('');
   }
 
   Future<void> _refreshPage() async {

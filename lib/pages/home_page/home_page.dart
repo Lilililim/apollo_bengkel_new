@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
               return Container();
             },
           ),
-          Flexible(
+          Flexible( //sidebar
             child: ListView(
               children: [
                 ListTile(
@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                         'Oli',
                       ),
                       leading: Icon(
-                        RpgAwesome.meat,
+                        FontAwesome5.tint,
                         color: Colors.pink[300],
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
@@ -430,7 +430,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  RpgAwesome.meat,
+                                  FontAwesome5.tint,
                                   color: Colors.pink[300],
                                 ),
                                 Text(
@@ -452,7 +452,7 @@ class _HomePageState extends State<HomePage> {
                         width: 70,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.orange,
+                            color:  Colors.orange,
                           ),
                           borderRadius: BorderRadius.all(
                             Radius.circular(
@@ -468,7 +468,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           color: Colors.white,
                           child: InkWell(
-                            splashColor: Colors.orange,
+                            splashColor:  Colors.orange,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -480,7 +480,7 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   'Ban',
                                   style: TextStyle(
-                                    color: Colors.orange,
+                                    color:  Colors.orange,
                                   ),
                                 ),
                               ],
@@ -524,6 +524,7 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   'Grease CVT',
                                   style: TextStyle(
+                                    fontSize: 10,
                                     color: Colors.red,
                                   ),
                                 ),

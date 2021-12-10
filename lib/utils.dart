@@ -18,14 +18,14 @@ enum KategoriProductListPage {
 int? kategoriToInt(KategoriProductListPage kategoriProduk) {
   return <KategoriProductListPage, int>{
     KategoriProductListPage.All: 0,
-    KategoriProductListPage.Ban: 1,
-    KategoriProductListPage.Oli: 2,
+    KategoriProductListPage.Oli: 1,
+    KategoriProductListPage.Ban: 2,
     KategoriProductListPage.Grease_cvt: 3,
     KategoriProductListPage.Oli_gardan: 4,
     KategoriProductListPage.Jasa_oli: 5,
-    KategoriProductListPage.Jasa_injeksi: 6,
-    KategoriProductListPage.Jasa_ban: 8,
-    KategoriProductListPage.Jasa_CVT: 9,
+    KategoriProductListPage.Jasa_ban: 6,
+    KategoriProductListPage.Jasa_injeksi: 7,
+    KategoriProductListPage.Jasa_CVT: 8,
   }[kategoriProduk];
 }
 
