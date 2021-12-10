@@ -35,7 +35,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     // setelah ambil currentCheckoutItems, bikin semua jadi currentCheckoutItemDatas
     currentCheckoutItems.forEach((item) async {
       await firestore
-          .collection('/products')
+          .collection('/product')
           .doc(item.itemId)
           .get()
           .then(
