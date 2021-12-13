@@ -28,7 +28,7 @@ class _JasaGridViewState extends State<JasaGridView> {
   var _jasa = Future<List<Jasa>>.value([]);
 
   /// Converter kategori ke string
-  String? _kategoriProductListPageToString(
+  String? _kategoriJasaListPageToString(
     KategoriProductListPage kategoriProductListPage,
   ) {
     var map = <KategoriProductListPage, String>{
@@ -55,7 +55,7 @@ class _JasaGridViewState extends State<JasaGridView> {
     /// jika user ingin melihat product kategori tertentu
     else {
       var stringifiedKategori =
-          _kategoriProductListPageToString(kategoriJasaListPage)!;
+          _kategoriJasaListPageToString(kategoriJasaListPage)!;
 
       print('sedang di kategori: $stringifiedKategori');
 
