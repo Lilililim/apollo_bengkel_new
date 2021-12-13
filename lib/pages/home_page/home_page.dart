@@ -43,11 +43,11 @@ class _HomePageState extends State<HomePage> {
         }).then((_) => setState(() {}));*/
   }
   void _navigateToJasaListPage(
-    KategoriProductListPage kategoriProduk,
+    KategoriProductListPage kategoriJasa,
   ) {
     Navigator.pushNamed(context, '/jasa_list_page',
         arguments: <String, dynamic>{
-          'kategoriJasa': kategoriProduk,
+          'kategoriJasa': kategoriJasa,
         }).then((_) => setState(() {}));
   }
   /*{
