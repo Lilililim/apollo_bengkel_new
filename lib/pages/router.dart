@@ -15,6 +15,8 @@ import 'package:apollo_bengkel/pages/splashscreen_page/splashscreen_page.dart';
 import 'package:apollo_bengkel/pages/success_buy_page/success_buy_page.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:apollo_bengkel/pages/jasa_detail_page/jasa_detail_page.dart';
+import 'package:apollo_bengkel/pages/jasa_list_page/jasa_list_page.dart';
 
 Route? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -91,6 +93,18 @@ Route? onGenerateRoute(RouteSettings settings) {
         builder: (_) => OrderHistoryDetailPage(
           checkoutHistoryItem: checkoutHistoryItem,
         ),
+      );
+    case '/jasa_list_page':
+      var args = (settings.arguments as Map<String, dynamic>);
+      var kategoriJasa = args['kategoriJasa'] as KategoriProductListPage;
+      return MaterialPageRoute(
+        builder: (_) =>
+            JasaListPage(initialKategoriJasaListPage: kategoriJasa),
+      );
+    case '/jasa_detail_page':
+      var jasa = ((settings.arguments) as Map<String, dynamic>)['jasa'];
+      return MaterialPageRoute(
+        builder: (_) => JasaDetailPage(jasa: jasa),
       );
     default:
       return null;

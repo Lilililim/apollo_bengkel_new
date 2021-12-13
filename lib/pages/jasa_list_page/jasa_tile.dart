@@ -1,26 +1,26 @@
 import 'package:apollo_bengkel/firebase.dart';
-import 'package:apollo_bengkel/models/Product.dart';
+import 'package:apollo_bengkel/models/Jasa.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
 
-class ProductTile extends StatefulWidget {
-  final Product product;
+class JasaTile extends StatefulWidget {
+  final Jasa jasa;
 
-  ProductTile({
-    required this.product,
+  JasaTile({
+    required this.jasa,
   });
 
   @override
-  _ProductTileState createState() => _ProductTileState(
-        product: product,
+  _JasaTileState createState() => _JasaTileState(
+        jasa: jasa,
       );
 }
 
-class _ProductTileState extends State<ProductTile> {
-  final Product product;
+class _JasaTileState extends State<JasaTile> {
+  final Jasa jasa;
 
-  _ProductTileState({
-    required this.product,
+  _JasaTileState({
+    required this.jasa,
   });
 
   @override
@@ -40,19 +40,19 @@ class _ProductTileState extends State<ProductTile> {
   }
 
   int hargaSetelahDiskon() {
-    return (product.hargapr - product.hargapr * product.promo).toInt();
+    return (jasa.hargajs - jasa.hargajs * jasa.promojs).toInt();
   }
 
   int persenDiskon() {
-    return (product.promo * 100).toInt();
+    return (jasa.promojs * 100).toInt();
   }
 
-  void _navigateToProductDetailPage(Product product) {
+  void _navigateToProductDetailPage(Jasa jasa) {
     Navigator.pushNamed(
       context,
-      '/product_detail_page',
+      '/jasa_detail_page',
       arguments: <String, dynamic>{
-        'product': product,
+        'jasa': jasa,
       },
     );
   }
@@ -148,7 +148,7 @@ class _ProductTileState extends State<ProductTile> {
                 bottom: 10.0,
               ),
               child: Text(
-                product.namapr,
+                jasa.namajs,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -160,7 +160,7 @@ class _ProductTileState extends State<ProductTile> {
             ),
 
             /// Jika product mempunyai promo diskon, maka tampilkan diskon dan harga akhir
-            if (product.promo > 0)
+            if (jasa.promojs > 0)
               Padding(
                 padding: const EdgeInsets.only(
                   left: 10.0,
@@ -192,7 +192,7 @@ class _ProductTileState extends State<ProductTile> {
                       ),
                     ),
                     Text(
-                      '${rupiahFormatter.format(product.hargapr)}',
+                      '${rupiahFormatter.format(jasa.hargajs)}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -221,7 +221,7 @@ class _ProductTileState extends State<ProductTile> {
         ),
       ),
       onTap: () {
-        _navigateToProductDetailPage(product);
+        _navigateToProductDetailPage(jasa);
       },
     );
   }

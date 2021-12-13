@@ -1,6 +1,7 @@
 import 'package:apollo_bengkel/components/shopping_cart_button.dart';
 import 'package:apollo_bengkel/firebase.dart';
 import 'package:apollo_bengkel/models/Product.dart';
+import 'package:apollo_bengkel/models/Jasa.dart';
 import 'package:apollo_bengkel/models/UserData.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,26 @@ class _HomePageState extends State<HomePage> {
         arguments: <String, dynamic>{
           'kategoriProduk': kategoriProduk,
         }).then((_) => setState(() {}));
-  }
 
+        /*Navigator.pushNamed(context, '/jasa_list_page',
+        arguments: <String, dynamic>{
+          'kategoriProduk': kategoriProduk,
+        }).then((_) => setState(() {}));*/
+  }
+  void _navigateToJasaListPage(
+    KategoriProductListPage kategoriProduk,
+  ) {
+    Navigator.pushNamed(context, '/jasa_list_page',
+        arguments: <String, dynamic>{
+          'kategoriJasa': kategoriProduk,
+        }).then((_) => setState(() {}));
+  }
+  /*{
+    Navigator.pushNamed(context, '/jasa_list_page',
+        arguments: <String, dynamic>{
+          'kategoriProduk': kategoriProduk,
+        }).then((_) => setState(() {}));
+  }*/
   void _navigateToProductListPageWithPop(
     KategoriProductListPage kategoriProduk,
   ) {
@@ -44,6 +63,16 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, '/product_list_page',
         arguments: <String, dynamic>{
           'kategoriProduk': kategoriProduk,
+        }).then((_) => setState(() {}));
+  }
+
+  void _navigateToJasaListPageWithPop(
+    KategoriProductListPage kategoriProduk,
+  ) {
+    Navigator.pop(context);
+    Navigator.pushNamed(context, '/jasa_list_page',
+        arguments: <String, dynamic>{
+          'kategoriJasa': kategoriProduk,
         }).then((_) => setState(() {}));
   }
 
@@ -728,8 +757,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
-                            onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Ban,
+                            onTap: () => _navigateToJasaListPage(
+                              KategoriProductListPage.Jasa_oli,
                             ),
                           ),
                         ),
@@ -772,8 +801,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
-                            onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Oli,
+                            onTap: () => _navigateToJasaListPage(
+                              KategoriProductListPage.Jasa_oli,
                             ),
                           ),
                         ),
@@ -817,8 +846,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
-                            onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Oli,
+                            onTap: () => _navigateToJasaListPage(
+                              KategoriProductListPage.Jasa_injeksi,
                             ),
                           ),
                         ),
@@ -862,8 +891,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
-                            onTap: () => _navigateToProductListPage(
-                              KategoriProductListPage.Oli,
+                            onTap: () => _navigateToJasaListPage(
+                              KategoriProductListPage.Jasa_CVT,
                             ),
                           ),
                         ),

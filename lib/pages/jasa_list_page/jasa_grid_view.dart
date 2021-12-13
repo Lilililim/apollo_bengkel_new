@@ -1,10 +1,10 @@
 import 'package:apollo_bengkel/firebase.dart';
 import 'package:apollo_bengkel/models/Jasa.dart';
-import 'package:apollo_bengkel/pages/jasa_list_page/paket_jasa_tile.dart';
 import 'package:apollo_bengkel/pages/jasa_list_page/jasa_tile.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+//import 'package:apollo_bengkel/pages/jasa_list_page/paket_jasa_tile.dart';
 
 class JasaGridView extends StatefulWidget {
   final KategoriProductListPage kategoriJasaListPage;
@@ -25,7 +25,7 @@ class _JasaGridViewState extends State<JasaGridView> {
   });
 
   final KategoriProductListPage kategoriJasaListPage;
-  var _products = Future<List<Jasa>>.value([]);
+  var _jasa = Future<List<Jasa>>.value([]);
 
   /// Converter kategori ke string
   String? _kategoriProductListPageToString(
@@ -42,7 +42,7 @@ class _JasaGridViewState extends State<JasaGridView> {
     return map[kategoriProductListPage];
   }
 
-  Future<List<Jasa>> _getProducts() async {
+  Future<List<Jasa>> _getJasa() async {
     List<Jasa> jasa = [];
     QuerySnapshot<Map<String, dynamic>> snapshot;
     var collection = firestore.collection('/jasa');
@@ -72,25 +72,25 @@ class _JasaGridViewState extends State<JasaGridView> {
         ...rawDoc,
       };
 
-      var product = Product.fromJSON(docData);
+      var jasa = Jasa.fromJSON(docData);
 
-      return product;
+      return jasa;
     }).toList();
 
-    return products;
+    return jasa;
   }
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      _products = _getProducts();
+      _jasa = _getJasa();
     });
   }
 
   SliverGridDelegate _getSliverGridDelegate() {
     //jasa_oli harus diubah
-    if (kategoriProductListPage == KategoriProductListPage.Jasa_oli) {
+    if (kategoriJasaListPage == KategoriProductListPage.Jasa_oli) {
       return SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
         childAspectRatio: 1.2 / 1,
@@ -103,21 +103,21 @@ class _JasaGridViewState extends State<JasaGridView> {
     );
   }
 
-  bool _isPaket() {
+  /*bool _isPaket() {
     //jasa_oli harus diubah
-    return kategoriProductListPage == KategoriProductListPage.Jasa_oli;
-  }
+    return kategoriJasaListPage == KategoriProductListPage.Jasa_oli;
+  }*/
 
   Future<void> _refreshItem() async {
     setState(() {
-      _products = _getProducts();
+      _jasa = _getJasa();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Product>>(
-      future: _products,
+    return FutureBuilder<List<Jasa>>(
+      future: _jasa,
       builder: (context, snapshot) {
         /// Jika selesai loading data
         if (snapshot.connectionState == ConnectionState.done) {
@@ -132,7 +132,7 @@ class _JasaGridViewState extends State<JasaGridView> {
 
           /// jika datanya tidak null/kosong
           if (snapshot.hasData) {
-            var products = snapshot.data!;
+            var jasa = snapshot.data!;
 
             return RefreshIndicator(
               onRefresh: () {
@@ -140,9 +140,9 @@ class _JasaGridViewState extends State<JasaGridView> {
               },
               child: GridView.builder(
                 gridDelegate: _getSliverGridDelegate(),
-                itemCount: products.length,
+                itemCount: jasa.length,
                 itemBuilder: (context, index) {
-                  if (products.length == 0) {
+                  if (jasa.length == 0) {
                     return Container(
                       child: Text(
                         'nothing here',
@@ -150,14 +150,8 @@ class _JasaGridViewState extends State<JasaGridView> {
                     );
                   }
 
-                  if (_isPaket()) {
-                    return PaketProductTile(
-                      product: products[index],
-                    );
-                  }
-
-                  return ProductTile(
-                    product: products[index],
+                  return JasaTile(
+                    jasa: jasa[index],
                   );
                 },
               ),

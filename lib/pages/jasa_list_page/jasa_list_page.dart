@@ -7,21 +7,21 @@ import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/linecons_icons.dart';
 import 'package:fluttericon/rpg_awesome_icons.dart';
 
-class ProductListPage extends StatefulWidget {
-  const ProductListPage({required this.initialKategoriProductListPage});
+class JasaListPage extends StatefulWidget {
+  const JasaListPage({required this.initialKategoriJasaListPage});
 
-  final KategoriProductListPage initialKategoriProductListPage;
+  final KategoriProductListPage initialKategoriJasaListPage;
 
   @override
-  _ProductListPageState createState() =>
-      _ProductListPageState(kategoriProduk: initialKategoriProductListPage);
+  _JasaListPageState createState() =>
+      _JasaListPageState(kategoriJasa: initialKategoriJasaListPage);
 }
 
-class _ProductListPageState extends State<ProductListPage>
+class _JasaListPageState extends State<JasaListPage>
     with TickerProviderStateMixin {
-  _ProductListPageState({required this.kategoriProduk});
+  _JasaListPageState({required this.kategoriJasa});
 
-  KategoriProductListPage kategoriProduk;
+  KategoriProductListPage kategoriJasa;
 
   TabController? _tabController;
 
@@ -33,7 +33,7 @@ class _ProductListPageState extends State<ProductListPage>
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: kategoriToInt(kategoriProduk)!,
+      initialIndex: kategoriToInt(kategoriJasa)!,
       length: 5,
       vsync: this,
     );
@@ -51,16 +51,16 @@ class _ProductListPageState extends State<ProductListPage>
             kategoriProductListPage: KategoriProductListPage.All,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Oli,
+            kategoriProductListPage: KategoriProductListPage.Jasa_oli,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Ban,
+            kategoriProductListPage: KategoriProductListPage.Jasa_ban,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Grease_cvt,
+            kategoriProductListPage: KategoriProductListPage.Jasa_injeksi,
           ),
           ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Oli_gardan,
+            kategoriProductListPage: KategoriProductListPage.Jasa_CVT,
           ),
         ]
             .map(
