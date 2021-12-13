@@ -897,7 +897,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      Container(
+                      /*Container(
                         height: 70,
                         width: 70,
                         decoration: BoxDecoration(
@@ -940,7 +940,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
                     ].map(
                           (e) {
                         return Padding(
