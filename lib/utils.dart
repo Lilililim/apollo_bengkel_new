@@ -13,7 +13,12 @@ enum KategoriProductListPage {
   Jasa_ban,
   Jasa_CVT,
 }
-
+/*enum KategoriJasaListPage { 
+  Jasa_oli,
+  Jasa_injeksi,
+  Jasa_ban,
+  Jasa_CVT,
+}*/
 /// untuk index tabview di page [ProductListPage]
 int? kategoriToInt(KategoriProductListPage kategoriProduk) {
   return <KategoriProductListPage, int>{

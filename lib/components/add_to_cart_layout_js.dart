@@ -1,6 +1,6 @@
 import 'package:apollo_bengkel/firebase.dart';
 import 'package:apollo_bengkel/models/CheckoutItem.dart';
-import 'package:apollo_bengkel/models/Product.dart';
+import 'package:apollo_bengkel/models/Jasa.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_number_picker/flutter_number_picker.dart';
@@ -8,35 +8,35 @@ import 'package:flutter_number_picker/flutter_number_picker.dart';
 class AddToCartLayout extends StatefulWidget {
   const AddToCartLayout({
     Key? key,
-    required this.product,
+    required this.jasa,
     required this.refreshCallBack,
   }) : super(key: key);
 
-  final Product product;
+  final Jasa jasa;
   //final Jasa jasa;
   final void Function() refreshCallBack;
 
   @override
   _AddToCartLayoutState createState() => _AddToCartLayoutState(
-        product: product,
+        jasa: jasa,
         refreshCallBack: refreshCallBack,
       );
 }
 
 class _AddToCartLayoutState extends State<AddToCartLayout> {
   _AddToCartLayoutState({
-    required this.product,
+    required this.jasa,
     required this.refreshCallBack,
   });
 
-  final Product product;
+  final Jasa jasa;
   void Function() refreshCallBack;
 
   // untuk beli product
   int banyak = 1;
 
   num hargaTotal() =>
-      ((product.hargapr - product.hargapr * product.promo) * banyak).toInt();
+      ((jasa.hargajs - jasa.hargajs * jasa.promojs) * banyak).toInt();
 
   dynamic _banyakProductBerubah(dynamic v) {
     setState(() {
@@ -67,11 +67,11 @@ class _AddToCartLayoutState extends State<AddToCartLayout> {
               .toList();
 
       /// cek apakah item ini sebelumnya tidak ada di allCurrentCheckoutItems
-      if (!allCurrentCheckoutItems.any((e) => e.itemId == product.id)) {
+      if (!allCurrentCheckoutItems.any((e) => e.itemId == jasa.id)) {
         /// jika nggak ada, tambahin itemnya
         allCurrentCheckoutItems.add(
           CheckoutItem(
-            itemId: product.id,
+            itemId: jasa.id,
             amount: banyak,
           ),
         );
@@ -92,20 +92,20 @@ class _AddToCartLayoutState extends State<AddToCartLayout> {
       else {
         /// ambil nilai amount dari item ini sebelumnya untuk ditambah
         var amountItemSebelum = allCurrentCheckoutItems
-            .singleWhere((element) => element.itemId == product.id)
+            .singleWhere((element) => element.itemId == jasa.id)
             .amount;
 
         /// ambil semua item dari allCheckoutItems kecuali item dengan id dari variable [product]
         tempCheckoutItems = allCurrentCheckoutItems
             .where(
-              (i) => i.itemId != product.id,
+              (i) => i.itemId != jasa.id,
             )
             .toList();
 
         /// tambahkan item checkout yang baru (dengan id sama tapi amount yang baru) ke variabel [tempCheckoutItems]
         tempCheckoutItems.add(
           CheckoutItem(
-            itemId: product.id,
+            itemId: jasa.id,
             amount: banyak + amountItemSebelum,
           ),
         );
