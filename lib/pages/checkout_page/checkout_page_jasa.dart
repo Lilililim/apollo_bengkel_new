@@ -75,7 +75,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
   }
 
   // untuk update banyak item
-  Future<void> _updateCheckoutAmount(CheckoutItemData item, int banyak) async {
+  Future<void> _updateCheckoutAmount(CheckoutItemJasa item, int banyak) async {
     print('amount updated');
     // get user email
     var email = fireAuth.currentUser!.email;
@@ -87,13 +87,13 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
       /// ambil semua item kecuali item dengan id dari variable [item]
       tempCheckoutItems = (user.data()['current_checkout_items'] as List)
           .map((e) => CheckoutItem.fromJSON(e))
-          .where((i) => i.itemId != item.product.id)
+          .where((i) => i.itemId != item.jasa.id)
           .toList();
 
       // tambahkan item checkout yang baru (dengan id sama tapi amount yang baru) ke variabel tempCheckoutItems
       tempCheckoutItems.add(
         CheckoutItem(
-          itemId: item.product.id,
+          itemId: item.jasa.id,
           amount: banyak,
         ),
       );
@@ -110,7 +110,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
       /// jika sukses, maka update juga banyak [item] di UI (agar total harga ter-update juga)
       setState(() {
         _currentCheckoutItemJasa
-            .where((e) => e.jasa.id == item.product.id)
+            .where((e) => e.jasa.id == item.jasa.id)
             .first
             .amount = banyak;
       });
@@ -118,7 +118,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
   }
 
   /// untuk remove item checkout dari firestore (saat swipe item ke samping)
-  Future<void> _removeItem(CheckoutItemData item) async {
+  Future<void> _removeItem(CheckoutItemJasa item) async {
     // ambil user email user
     var email = fireAuth.currentUser!.email;
 
@@ -135,7 +135,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
 
       /// bikin data [current_checkout_items] yang baru, tanpa item dengan id dari variable [item] (dibuang)
       var currentCheckoutItemsBaru = currentCheckoutItems
-          .where((e) => e.itemId != item.product.id)
+          .where((e) => e.itemId != item.jasa.id)
           .map((e) => e.toJSON())
           .toList();
 
@@ -150,7 +150,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
       /// update [item] yang dipesan di UI (agar total harga ter-update juga)
       setState(() {
         _currentCheckoutItemJasa = _currentCheckoutItemJasa
-            .where((e) => e.jasa.id != item.product.id)
+            .where((e) => e.jasa.id != item.jasa.id)
             .toList();
       });
     });
