@@ -687,7 +687,7 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 22.0,
                         ),
                       ),
-                      TextButton(
+                      /*TextButton(
                         child: Row(
                           children: <Widget>[
                             Text(
@@ -705,7 +705,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () => _navigateToProductListPage(
                           KategoriProductListPage.All,
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
