@@ -34,7 +34,7 @@ class _JasaListPageState extends State<JasaListPage>
     super.initState();
     _tabController = TabController(
       initialIndex: getJasaIndex(kategoriJasa)!,
-      length: 5,
+      length: 4,
       vsync: this,
     );
   }
@@ -48,7 +48,7 @@ class _JasaListPageState extends State<JasaListPage>
         controller: _tabController,
         children: [
           /*JasaGridView(
-            kategoriJasaListPage: KategoriProductListPage.All,
+            kategoriJasaListPage: KategoriJasaListPage.Alljs,
           ),*/
           JasaGridView(
             kategoriJasaListPage: KategoriJasaListPage.Jasa_oli,
@@ -106,12 +106,12 @@ class _JasaListPageState extends State<JasaListPage>
           indicatorColor: Colors.blue,
           controller: _tabController,
           tabs: [
-            Tab(
+            /*Tab(
               child: Icon(
                 FontAwesome.food,
                 color: Colors.grey[400],
               ),
-            ),
+            ),*/
             Tab(
               child: Icon(
                 RpgAwesome.meat,

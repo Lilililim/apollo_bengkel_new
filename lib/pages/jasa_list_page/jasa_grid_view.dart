@@ -89,24 +89,11 @@ class _JasaGridViewState extends State<JasaGridView> {
   }
 
   SliverGridDelegate _getSliverGridDelegate() {
-    //jasa_oli harus diubah
-    if (kategoriJasaListPage == KategoriJasaListPage.Jasa_oli) {
-      return SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
-        childAspectRatio: 1.2 / 1,
-      );
-    }
-
     return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       childAspectRatio: 5 / 9,
     );
   }
-
-  /*bool _isPaket() {
-    //jasa_oli harus diubah
-    return kategoriJasaListPage == KategoriProductListPage.Jasa_oli;
-  }*/
 
   Future<void> _refreshItem() async {
     setState(() {

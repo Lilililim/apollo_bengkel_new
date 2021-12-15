@@ -11,6 +11,7 @@ enum KategoriProductListPage {
   Oli_gardan,
 }
 enum KategoriJasaListPage {
+  //Alljs,
   Jasa_oli,
   Jasa_injeksi,
   Jasa_ban,
@@ -38,6 +39,7 @@ int? kategoriToInt(KategoriProductListPage kategoriProduk) {
 }
 int? getJasaIndex(KategoriJasaListPage kategoriJasa) {
   return <KategoriJasaListPage, int>{
+    //KategoriJasaListPage.Alljs: 0,
     KategoriJasaListPage.Jasa_oli: 0,
     KategoriJasaListPage.Jasa_ban: 1,
     KategoriJasaListPage.Jasa_injeksi: 2,
