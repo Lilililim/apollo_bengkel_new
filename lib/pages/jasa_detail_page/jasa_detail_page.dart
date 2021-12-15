@@ -53,7 +53,7 @@ class _JasaDetailPageState extends State<JasaDetailPage>
   }
 
   Future<void> _navigateToCheckoutPage() async {
-    await Navigator.pushNamed(context, '/checkout_page');
+    await Navigator.pushNamed(context, '/checkout_page_jasa');
   }
 
   Future<String> _fetchImageUrl() {
