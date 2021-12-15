@@ -189,7 +189,7 @@ class _JasaDetailPageState extends State<JasaDetailPage>
           ),
           SlideTransition(
             position: _checkoutOffsetAnimation,
-            child: AddToCartLayout(
+            child: AddToCartLayoutJs(
               jasa: jasa,
               refreshCallBack: _refreshPage,
             ),
