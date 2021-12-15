@@ -1,4 +1,5 @@
 import 'package:apollo_bengkel/models/Product.dart';
+import 'package:apollo_bengkel/models/Jasa.dart';
 
 /// model data untuk checkout item yang data lengkapnya sudah diambil
 class CheckoutItemData {
@@ -9,6 +10,18 @@ class CheckoutItemData {
   });
 
   final Product product;
+  String photoDownloadURL = '';
+  int amount;
+}
+
+class CheckoutItemJasa {
+  CheckoutItemJasa({
+    required this.jasa,
+    required this.amount,
+    this.photoDownloadURL = '',
+  });
+
+  final Jasa jasa;
   String photoDownloadURL = '';
   int amount;
 }
