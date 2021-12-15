@@ -88,31 +88,18 @@ class _ProductGridViewState extends State<ProductGridView> {
     });
   }
 
-  /*SliverGridDelegate _getSliverGridDelegate() {
-    //jasa_oli harus diubah
-    if (kategoriProductListPage == KategoriProductListPage.Jasa_oli) {
-      return SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
-        childAspectRatio: 1.2 / 1,
-      );
-    }
-
+  SliverGridDelegate _getSliverGridDelegate() {
     return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       childAspectRatio: 5 / 9,
     );
   }
 
-  bool _isPaket() {
-    //jasa_oli harus diubah
-    return kategoriProductListPage == KategoriProductListPage.Jasa_oli;
-  }
-
   Future<void> _refreshItem() async {
     setState(() {
       _products = _getProducts();
     });
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,13 +136,6 @@ class _ProductGridViewState extends State<ProductGridView> {
                       ),
                     );
                   }
-
-                  if (_isPaket()) {
-                    return PaketProductTile(
-                      product: products[index],
-                    );
-                  }
-
                   return ProductTile(
                     product: products[index],
                   );
