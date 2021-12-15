@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         }).then((_) => setState(() {}));*/
   }
   void _navigateToJasaListPage(
-    KategoriProductListPage kategoriJasa,
+    KategoriJasaListPage kategoriJasa,
   ) {
     Navigator.pushNamed(context, '/jasa_list_page',
         arguments: <String, dynamic>{
@@ -67,12 +67,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _navigateToJasaListPageWithPop(
-    KategoriProductListPage kategoriProduk,
+    KategoriJasaListPage kategoriJasa,
   ) {
     Navigator.pop(context);
     Navigator.pushNamed(context, '/jasa_list_page',
         arguments: <String, dynamic>{
-          'kategoriJasa': kategoriProduk,
+          'kategoriJasa': kategoriJasa,
         }).then((_) => setState(() {}));
   }
 
@@ -310,8 +310,8 @@ class _HomePageState extends State<HomePage> {
                         Linecons.food,
                         color: Colors.yellow[800],
                       ),
-                      onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Jasa_injeksi,
+                      onTap: () => _navigateToJasaListPageWithPop(
+                        KategoriJasaListPage.Jasa_injeksi,
                       ),
                     ),
                   ]
@@ -758,7 +758,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToJasaListPage(
-                              KategoriProductListPage.Jasa_oli,
+                              KategoriJasaListPage.Jasa_oli,
                             ),
                           ),
                         ),
@@ -802,7 +802,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToJasaListPage(
-                              KategoriProductListPage.Jasa_oli,
+                              KategoriJasaListPage.Jasa_oli,
                             ),
                           ),
                         ),
@@ -847,7 +847,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToJasaListPage(
-                              KategoriProductListPage.Jasa_injeksi,
+                              KategoriJasaListPage.Jasa_injeksi,
                             ),
                           ),
                         ),
@@ -892,7 +892,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             onTap: () => _navigateToJasaListPage(
-                              KategoriProductListPage.Jasa_CVT,
+                              KategoriJasaListPage.Jasa_CVT,
                             ),
                           ),
                         ),

@@ -96,7 +96,7 @@ Route? onGenerateRoute(RouteSettings settings) {
       );
     case '/jasa_list_page':
       var args = (settings.arguments as Map<String, dynamic>);
-      var kategoriJasa = args['kategoriJasa'] as KategoriProductListPage;
+      var kategoriJasa = args['kategoriJasa'] as KategoriJasaListPage;
       return MaterialPageRoute(
         builder: (_) =>
             JasaListPage(initialKategoriJasaListPage: kategoriJasa),

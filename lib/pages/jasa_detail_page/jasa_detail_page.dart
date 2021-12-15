@@ -62,7 +62,7 @@ class _JasaDetailPageState extends State<JasaDetailPage>
     var photoName = jasa.photoNamejs;
 
     var ref = firestorage.refFromURL(
-      'gs://apolo-bengkel.appspot.com/app/foto_produk/$kategori/$photoName',
+      'gs://apolo-bengkel.appspot.com/app/foto_jasa/$kategori/$photoName',
     );
 
     return ref.getDownloadURL();

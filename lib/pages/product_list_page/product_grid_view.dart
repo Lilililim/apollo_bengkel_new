@@ -88,7 +88,7 @@ class _ProductGridViewState extends State<ProductGridView> {
     });
   }
 
-  SliverGridDelegate _getSliverGridDelegate() {
+  /*SliverGridDelegate _getSliverGridDelegate() {
     //jasa_oli harus diubah
     if (kategoriProductListPage == KategoriProductListPage.Jasa_oli) {
       return SliverGridDelegateWithFixedCrossAxisCount(
@@ -112,7 +112,7 @@ class _ProductGridViewState extends State<ProductGridView> {
     setState(() {
       _products = _getProducts();
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

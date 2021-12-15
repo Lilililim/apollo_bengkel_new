@@ -1,5 +1,5 @@
 import 'package:apollo_bengkel/components/shopping_cart_button.dart';
-import 'package:apollo_bengkel/pages/product_list_page/product_grid_view.dart';
+import 'package:apollo_bengkel/pages/jasa_list_page/jasa_grid_view.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
@@ -10,7 +10,7 @@ import 'package:fluttericon/rpg_awesome_icons.dart';
 class JasaListPage extends StatefulWidget {
   const JasaListPage({required this.initialKategoriJasaListPage});
 
-  final KategoriProductListPage initialKategoriJasaListPage;
+  final KategoriJasaListPage initialKategoriJasaListPage;
 
   @override
   _JasaListPageState createState() =>
@@ -21,7 +21,7 @@ class _JasaListPageState extends State<JasaListPage>
     with TickerProviderStateMixin {
   _JasaListPageState({required this.kategoriJasa});
 
-  KategoriProductListPage kategoriJasa;
+  KategoriJasaListPage kategoriJasa;
 
   TabController? _tabController;
 
@@ -33,7 +33,7 @@ class _JasaListPageState extends State<JasaListPage>
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: kategoriToInt(kategoriJasa)!,
+      initialIndex: getJasaIndex(kategoriJasa)!,
       length: 5,
       vsync: this,
     );
@@ -47,20 +47,20 @@ class _JasaListPageState extends State<JasaListPage>
       body: TabBarView(
         controller: _tabController,
         children: [
-          ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.All,
+          /*JasaGridView(
+            kategoriJasaListPage: KategoriProductListPage.All,
+          ),*/
+          JasaGridView(
+            kategoriJasaListPage: KategoriJasaListPage.Jasa_oli,
           ),
-          ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Jasa_oli,
+          JasaGridView(
+            kategoriJasaListPage: KategoriJasaListPage.Jasa_ban,
           ),
-          ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Jasa_ban,
+          JasaGridView(
+            kategoriJasaListPage: KategoriJasaListPage.Jasa_injeksi,
           ),
-          ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Jasa_injeksi,
-          ),
-          ProductGridView(
-            kategoriProductListPage: KategoriProductListPage.Jasa_CVT,
+          JasaGridView(
+            kategoriJasaListPage: KategoriJasaListPage.Jasa_CVT,
           ),
         ]
             .map(
@@ -79,7 +79,7 @@ class _JasaListPageState extends State<JasaListPage>
   PreferredSizeWidget? _appBar() {
     return AppBar(
       title: Text(
-        'Katalog Produk',
+        'Katalog Jasa',
         style: TextStyle(
           color: Colors.blue,
         ),

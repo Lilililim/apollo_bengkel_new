@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 //import 'package:apollo_bengkel/pages/jasa_list_page/paket_jasa_tile.dart';
 
 class JasaGridView extends StatefulWidget {
-  final KategoriProductListPage kategoriJasaListPage;
+  final KategoriJasaListPage kategoriJasaListPage;
 
   JasaGridView({
     required this.kategoriJasaListPage,
@@ -24,22 +24,22 @@ class _JasaGridViewState extends State<JasaGridView> {
     required this.kategoriJasaListPage,
   });
 
-  final KategoriProductListPage kategoriJasaListPage;
+  final KategoriJasaListPage kategoriJasaListPage;
   var _jasa = Future<List<Jasa>>.value([]);
 
   /// Converter kategori ke string
   String? _kategoriJasaListPageToString(
-    KategoriProductListPage kategoriProductListPage,
+    KategoriJasaListPage kategoriJasaListPage,
   ) {
-    var map = <KategoriProductListPage, String>{
-      KategoriProductListPage.All: 'all',
-      KategoriProductListPage.Jasa_oli: 'jasa_oli',
-      KategoriProductListPage.Jasa_ban: 'jasa_ban',
-      KategoriProductListPage.Jasa_injeksi: 'jasa_injeksi',
-      KategoriProductListPage.Jasa_CVT: 'jasa_cvt',
+    var map = <KategoriJasaListPage, String>{
+      //KategoriProductListPage.All: 'all',
+      KategoriJasaListPage.Jasa_oli: 'jasa_oli',
+      KategoriJasaListPage.Jasa_ban: 'jasa_ban',
+      KategoriJasaListPage.Jasa_injeksi: 'jasa_injeksi',
+      KategoriJasaListPage.Jasa_CVT: 'jasa_cvt',
     };
 
-    return map[kategoriProductListPage];
+    return map[kategoriJasaListPage];
   }
 
   Future<List<Jasa>> _getJasa() async {
@@ -90,7 +90,7 @@ class _JasaGridViewState extends State<JasaGridView> {
 
   SliverGridDelegate _getSliverGridDelegate() {
     //jasa_oli harus diubah
-    if (kategoriJasaListPage == KategoriProductListPage.Jasa_oli) {
+    if (kategoriJasaListPage == KategoriJasaListPage.Jasa_oli) {
       return SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
         childAspectRatio: 1.2 / 1,
