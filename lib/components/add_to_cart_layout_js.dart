@@ -5,8 +5,8 @@ import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_number_picker/flutter_number_picker.dart';
 
-class AddToCartLayout extends StatefulWidget {
-  const AddToCartLayout({
+class AddToCartLayoutJs extends StatefulWidget {
+  const AddToCartLayoutJs({
     Key? key,
     required this.jasa,
     required this.refreshCallBack,
@@ -17,14 +17,14 @@ class AddToCartLayout extends StatefulWidget {
   final void Function() refreshCallBack;
 
   @override
-  _AddToCartLayoutState createState() => _AddToCartLayoutState(
+  _AddToCartLayoutJsState createState() => _AddToCartLayoutJsState(
         jasa: jasa,
         refreshCallBack: refreshCallBack,
       );
 }
 
-class _AddToCartLayoutState extends State<AddToCartLayout> {
-  _AddToCartLayoutState({
+class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
+  _AddToCartLayoutJsState({
     required this.jasa,
     required this.refreshCallBack,
   });
