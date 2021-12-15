@@ -13,7 +13,7 @@ class CheckoutPageJasa extends StatefulWidget {
 }
 
 class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
-  List<CheckoutItemData> _currentCheckoutItemDatas = [];
+  List<CheckoutItemData> _currentCheckoutItemJasa = [];
 
   // untuk ambil data checkout awal dan pada saat refresh halaman
   Future<void> _fetchCurrentCheckoutData() async {
@@ -67,7 +67,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         if (mounted) {
           // kalau selesai langsung setState agar halaman refresh
           setState(() {
-            _currentCheckoutItemDatas.add(checkoutItemJasa);
+            _currentCheckoutItemJasa.add(checkoutItemJasa);
           });
         }
       });
@@ -109,7 +109,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     }).then((value) {
       /// jika sukses, maka update juga banyak [item] di UI (agar total harga ter-update juga)
       setState(() {
-        _currentCheckoutItemDatas
+        _currentCheckoutItemJasa
             .where((e) => e.product.id == item.product.id)
             .first
             .amount = banyak;
@@ -149,7 +149,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     }).then((value) {
       /// update [item] yang dipesan di UI (agar total harga ter-update juga)
       setState(() {
-        _currentCheckoutItemDatas = _currentCheckoutItemDatas
+        _currentCheckoutItemJasa = _currentCheckoutItemJasa
             .where((e) => e.product.id != item.product.id)
             .toList();
       });
@@ -161,7 +161,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
   void _navigateToConfirmationPage() {
     Navigator.pushNamed(context, '/confirmation_page',
         arguments: <String, dynamic>{
-          'checkoutItemDatas': _currentCheckoutItemDatas,
+          'checkoutItemJasa': _currentCheckoutItemJasa,
         });
   }
 
