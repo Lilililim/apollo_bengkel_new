@@ -13,7 +13,7 @@ class CheckoutPageJasa extends StatefulWidget {
 }
 
 class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
-  List<CheckoutItemData> _currentCheckoutItemJasa = [];
+  List<CheckoutItemJasa> _currentCheckoutItemJasa = [];
 
   // untuk ambil data checkout awal dan pada saat refresh halaman
   Future<void> _fetchCurrentCheckoutData() async {
@@ -110,7 +110,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
       /// jika sukses, maka update juga banyak [item] di UI (agar total harga ter-update juga)
       setState(() {
         _currentCheckoutItemJasa
-            .where((e) => e.product.id == item.product.id)
+            .where((e) => e.jasa.id == item.product.id)
             .first
             .amount = banyak;
       });
@@ -150,7 +150,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
       /// update [item] yang dipesan di UI (agar total harga ter-update juga)
       setState(() {
         _currentCheckoutItemJasa = _currentCheckoutItemJasa
-            .where((e) => e.product.id != item.product.id)
+            .where((e) => e.jasa.id != item.product.id)
             .toList();
       });
     });
@@ -217,11 +217,11 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         RefreshIndicator(
           onRefresh: _fetchCurrentCheckoutData,
           child: ListView.builder(
-            itemCount: _currentCheckoutItemDatas.length,
+            itemCount: _currentCheckoutItemJasa.length,
             itemBuilder: (_, idx) {
-              var itemData = _currentCheckoutItemDatas[idx];
+              var itemData = _currentCheckoutItemJasa[idx];
               return Dismissible(
-                key: Key(itemData.product.id),
+                key: Key(itemData.jasa.id),
                 background: Container(
                   color: Theme.of(context).buttonColor,
                 ),
@@ -237,13 +237,13 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
                     ),
                   ),
                   title: Text(
-                    itemData.product.namapr,
+                    itemData.jasa.namajs,
                     style: TextStyle(
                       color: Colors.blue,
                     ),
                   ),
                   subtitle: Text(
-                    '${rupiahFormatter.format(_hargaSetelahDiskon(itemData.product))}',
+                    '${rupiahFormatter.format(_hargaSetelahDiskon(itemData.jasa))}',
                     style: TextStyle(
                       color: Colors.blue,
                     ),
@@ -316,7 +316,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
                       ),
                     ),
                     Text(
-                      '${rupiahFormatter.format(_hargaTotal(_currentCheckoutItemDatas))}',
+                      '${rupiahFormatter.format(_hargaTotal(_currentCheckoutItemJasa))}',
                       style: TextStyle(
                         fontSize: 18,
                       ),
@@ -332,7 +332,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: _currentCheckoutItemDatas.isNotEmpty
+                    onPressed: _currentCheckoutItemJasa.isNotEmpty
                         ? _navigateToConfirmationPage
                         : null,
                     color: Theme.of(context).buttonColor,
