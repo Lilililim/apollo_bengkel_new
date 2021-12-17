@@ -74,7 +74,7 @@ Route? onGenerateRoute(RouteSettings settings) {
       case '/confirmation_page_jasa':
       var args = (settings.arguments as Map<String, dynamic>);
       var checkoutItemJasas =
-          args['checkoutItemJasa'] as List<CheckoutItemData>;
+          args['checkoutItemJasa'] as List<CheckoutItemJasa>;
       return MaterialPageRoute(
         builder: (_) => ConfirmationPageJasa(
           checkoutItemJasas: checkoutItemJasas,

@@ -74,6 +74,9 @@ class _VirtualAccountTabState extends State<VirtualAccountTab> {
           await doc.reference.update({
             'current_checkout_items': [],
           });
+          await doc.reference.update({
+            'current_checkout_jasa': [],
+          });
         }).then((_) {
           /// lalu navigate ke success_buy_page
           _navigateToSuccessBuyPage(c.id);

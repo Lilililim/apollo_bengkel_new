@@ -2,6 +2,7 @@ import 'package:apollo_bengkel/firebase.dart';
 import 'package:apollo_bengkel/models/CheckoutHistoryItem.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/models/Product.dart';
+import 'package:apollo_bengkel/models/Jasa.dart';
 import 'package:apollo_bengkel/models/UserData.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

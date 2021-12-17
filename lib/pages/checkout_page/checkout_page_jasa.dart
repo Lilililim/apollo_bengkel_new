@@ -159,7 +159,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
   }
 
   void _navigateToConfirmationPage() {
-    Navigator.pushNamed(context, '/confirmation_page',
+    Navigator.pushNamed(context, '/confirmation_page_jasa',
         arguments: <String, dynamic>{
           'checkoutItemJasa': _currentCheckoutItemJasa,
         });
