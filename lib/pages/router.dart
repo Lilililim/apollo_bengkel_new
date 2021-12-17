@@ -3,6 +3,7 @@ import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/pages/checkout_page/checkout_page.dart';
 import 'package:apollo_bengkel/pages/checkout_page/checkout_page_jasa.dart';
 import 'package:apollo_bengkel/pages/confirmation_page/confirmation_page.dart';
+import 'package:apollo_bengkel/pages/confirmation_page/confirmation_page_jasa.dart';
 import 'package:apollo_bengkel/pages/home_page/home_page.dart';
 import 'package:apollo_bengkel/pages/login_page/login_page.dart';
 import 'package:apollo_bengkel/pages/order_histories_page/order_histories_page.dart';
@@ -68,6 +69,15 @@ Route? onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (_) => ConfirmationPage(
           checkoutItemDatas: checkoutItemDatas,
+        ),
+      );
+      case '/confirmation_page_jasa':
+      var args = (settings.arguments as Map<String, dynamic>);
+      var checkoutItemJasas =
+          args['checkoutItemJasa'] as List<CheckoutItemData>;
+      return MaterialPageRoute(
+        builder: (_) => ConfirmationPageJasa(
+          checkoutItemJasas: checkoutItemJasas,
         ),
       );
     case '/success_buy_page':
