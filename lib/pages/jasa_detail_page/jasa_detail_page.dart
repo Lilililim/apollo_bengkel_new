@@ -1,5 +1,5 @@
 import 'package:apollo_bengkel/components/add_to_cart_layout_js.dart';
-import 'package:apollo_bengkel/components/shopping_cart_button.dart';
+import 'package:apollo_bengkel/components/shopping_cart_button_js.dart';
 import 'package:apollo_bengkel/firebase.dart';
 import 'package:apollo_bengkel/models/Jasa.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ class _JasaDetailPageState extends State<JasaDetailPage>
     Navigator.pop(context);
   }
 
-  Future<void> _navigateToCheckoutPage() async {
+  Future<void> _navigateToCheckoutPageJasa() async {
     await Navigator.pushNamed(context, '/checkout_page_jasa');
   }
 
@@ -218,8 +218,8 @@ class _JasaDetailPageState extends State<JasaDetailPage>
         overflow: TextOverflow.fade,
       ),
       actions: <Widget>[
-        ShoppingCartButton(
-          onPressed: _navigateToCheckoutPage,
+        ShoppingCartButtonJasa(
+          onPressed: _navigateToCheckoutPageJasa,
         ),
       ],
     );

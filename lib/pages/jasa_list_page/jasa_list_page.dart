@@ -1,4 +1,4 @@
-import 'package:apollo_bengkel/components/shopping_cart_button.dart';
+import 'package:apollo_bengkel/components/shopping_cart_button_js.dart';
 import 'package:apollo_bengkel/pages/jasa_list_page/jasa_grid_view.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class _JasaListPageState extends State<JasaListPage>
   TabController? _tabController;
 
   void _navigateToCheckoutPage() {
-    Navigator.pushNamed(context, '/checkout_page').then((_) => setState(() {}));
+    Navigator.pushNamed(context, '/checkout_page_jasa').then((_) => setState(() {}));
   }
 
   @override
@@ -149,7 +149,7 @@ class _JasaListPageState extends State<JasaListPage>
         ),
       ),
       actions: <Widget>[
-        ShoppingCartButton(
+        ShoppingCartButtonJasa(
           onPressed: _navigateToCheckoutPage,
         ),
       ],

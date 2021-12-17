@@ -1,6 +1,7 @@
 import 'package:apollo_bengkel/models/CheckoutHistoryItem.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/pages/checkout_page/checkout_page.dart';
+import 'package:apollo_bengkel/pages/checkout_page/checkout_page_jasa.dart';
 import 'package:apollo_bengkel/pages/confirmation_page/confirmation_page.dart';
 import 'package:apollo_bengkel/pages/home_page/home_page.dart';
 import 'package:apollo_bengkel/pages/login_page/login_page.dart';
@@ -55,6 +56,10 @@ Route? onGenerateRoute(RouteSettings settings) {
     case '/checkout_page':
       return MaterialPageRoute(
         builder: (_) => CheckoutPage(),
+      );
+    case '/checkout_page_jasa':
+      return MaterialPageRoute(
+        builder: (_) => CheckoutPageJasa(),
       );
     case '/confirmation_page':
       var args = (settings.arguments as Map<String, dynamic>);

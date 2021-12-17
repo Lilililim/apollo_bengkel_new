@@ -1,11 +1,11 @@
 /// class model untuk field [current_checkout_items] di firestore
-class CheckoutItem {
-  CheckoutItem({
+class CheckoutJasa {
+  CheckoutJasa({
     required this.itemId,
     required this.amount,
   });
 
-  factory CheckoutItem.fromJSON(Map<String, dynamic> map) => CheckoutItem(
+  factory CheckoutJasa.fromJSON(Map<String, dynamic> map) => CheckoutJasa(
         itemId: map['item_id'],
         amount: map['amount'],
       );

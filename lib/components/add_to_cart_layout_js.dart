@@ -1,5 +1,5 @@
 import 'package:apollo_bengkel/firebase.dart';
-import 'package:apollo_bengkel/models/CheckoutItem.dart';
+import 'package:apollo_bengkel/models/CheckoutJasa.dart';
 import 'package:apollo_bengkel/models/Jasa.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
@@ -56,32 +56,32 @@ class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
           isEqualTo: email,
         );
 
-    List<CheckoutItem> tempCheckoutItems = [];
+    List<CheckoutJasa> tempCheckoutJasa = [];
 
     /// ambil semua checkout item dulu
     await query.get().then((col) => col.docs.first).then((user) async {
       /// ambil semua item
-      var allCurrentCheckoutItems =
-          (user.data()['current_checkout_items'] as List)
-              .map((e) => CheckoutItem.fromJSON(e))
+      var allCurrentCheckoutJasa =
+          (user.data()['current_checkout_jasa'] as List)
+              .map((e) => CheckoutJasa.fromJSON(e))
               .toList();
 
       /// cek apakah item ini sebelumnya tidak ada di allCurrentCheckoutItems
-      if (!allCurrentCheckoutItems.any((e) => e.itemId == jasa.id)) {
+      if (!allCurrentCheckoutJasa.any((e) => e.itemId == jasa.id)) {
         /// jika nggak ada, tambahin itemnya
-        allCurrentCheckoutItems.add(
-          CheckoutItem(
+        allCurrentCheckoutJasa.add(
+          CheckoutJasa(
             itemId: jasa.id,
             amount: banyak,
           ),
         );
 
-        var newCurrentCheckoutItems =
-            allCurrentCheckoutItems.map((e) => e.toJSON()).toList();
+        var newCurrentCheckoutJasa =
+            allCurrentCheckoutJasa.map((e) => e.toJSON()).toList();
 
         /// lalu update data [current_checkout_items] di firestore dengan array yang baru
         await user.reference.update({
-          'current_checkout_items': newCurrentCheckoutItems,
+          'current_checkout_jasa': newCurrentCheckoutJasa,
         });
 
         /// selesai
@@ -91,32 +91,32 @@ class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
       /// tapi jika item sudah ada di allCheckoutItems, tinggal tambahin amountnya ke firestore
       else {
         /// ambil nilai amount dari item ini sebelumnya untuk ditambah
-        var amountItemSebelum = allCurrentCheckoutItems
+        var amountJasaSebelum = allCurrentCheckoutJasa
             .singleWhere((element) => element.itemId == jasa.id)
             .amount;
 
         /// ambil semua item dari allCheckoutItems kecuali item dengan id dari variable [product]
-        tempCheckoutItems = allCurrentCheckoutItems
+        tempCheckoutJasa = allCurrentCheckoutJasa
             .where(
               (i) => i.itemId != jasa.id,
             )
             .toList();
 
         /// tambahkan item checkout yang baru (dengan id sama tapi amount yang baru) ke variabel [tempCheckoutItems]
-        tempCheckoutItems.add(
-          CheckoutItem(
+        tempCheckoutJasa.add(
+          CheckoutJasa(
             itemId: jasa.id,
-            amount: banyak + amountItemSebelum,
+            amount: banyak + amountJasaSebelum,
           ),
         );
 
         /// buat tiap anggotanya ke bentuk map<string, dynamic> agar bisa di save ke firestore
-        var newCurrentCheckoutItems =
-            tempCheckoutItems.map((e) => e.toJSON()).toList();
+        var newCurrentCheckoutJasa =
+            tempCheckoutJasa.map((e) => e.toJSON()).toList();
 
         /// lalu update data [current_checkout_items] di firestore dengan array yang baru
         await user.reference.update({
-          'current_checkout_items': newCurrentCheckoutItems,
+          'current_checkout_jasa': newCurrentCheckoutJasa,
         });
       }
     });

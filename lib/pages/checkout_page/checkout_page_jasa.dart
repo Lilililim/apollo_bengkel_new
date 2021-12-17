@@ -1,5 +1,5 @@
 import 'package:apollo_bengkel/firebase.dart';
-import 'package:apollo_bengkel/models/CheckoutItem.dart';
+import 'package:apollo_bengkel/models/CheckoutJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/models/Jasa.dart';
 import 'package:apollo_bengkel/utils.dart';
@@ -18,7 +18,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
   // untuk ambil data checkout awal dan pada saat refresh halaman
   Future<void> _fetchCurrentCheckoutData() async {
     // ambil current_checkout_item dari user saat ini
-    List<CheckoutItem> currentCheckoutItems = [];
+    List<CheckoutJasa> currentCheckoutJasa = [];
 
     await firestore
         .collection('/users')
@@ -26,14 +26,14 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         .get()
         .then(
       (col) {
-        var datas = col.docs.first.data()['current_checkout_items'] as List;
-        currentCheckoutItems =
-            datas.map((e) => CheckoutItem.fromJSON(e)).toList();
+        var datas = col.docs.first.data()['current_checkout_jasa'] as List;
+        currentCheckoutJasa =
+            datas.map((e) => CheckoutJasa.fromJSON(e)).toList();
       },
     );
 
     // setelah ambil currentCheckoutItems, bikin semua jadi currentCheckoutItemDatas
-    currentCheckoutItems.forEach((item) async {
+    currentCheckoutJasa.forEach((item) async {
       await firestore
           .collection('/jasa')
           .doc(item.itemId)
@@ -80,31 +80,31 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     // get user email
     var email = fireAuth.currentUser!.email;
     var query = firestore.collection('/users').where('email', isEqualTo: email);
-    List<CheckoutItem> tempCheckoutItems = [];
+    List<CheckoutJasa> tempCheckoutJasa = [];
 
     // ambil semua checkout item dulu
     await query.get().then((col) => col.docs.first).then((user) async {
       /// ambil semua item kecuali item dengan id dari variable [item]
-      tempCheckoutItems = (user.data()['current_checkout_items'] as List)
-          .map((e) => CheckoutItem.fromJSON(e))
+      tempCheckoutJasa = (user.data()['current_checkout_jasa'] as List)
+          .map((e) => CheckoutJasa.fromJSON(e))
           .where((i) => i.itemId != item.jasa.id)
           .toList();
 
       // tambahkan item checkout yang baru (dengan id sama tapi amount yang baru) ke variabel tempCheckoutItems
-      tempCheckoutItems.add(
-        CheckoutItem(
+      tempCheckoutJasa.add(
+        CheckoutJasa(
           itemId: item.jasa.id,
           amount: banyak,
         ),
       );
 
       /// buat tiap anggotanya ke bentuk map<string, dynamic> agar bisa di save ke firestore
-      var newCurrentCheckoutItems =
-          tempCheckoutItems.map((e) => e.toJSON()).toList();
+      var newCurrentCheckoutJasa =
+          tempCheckoutJasa.map((e) => e.toJSON()).toList();
 
       /// lalu update data [current_checkout_items] di firestore dengan array yang baru
       await user.reference.update({
-        'current_checkout_items': newCurrentCheckoutItems,
+        'current_checkout_jasa': newCurrentCheckoutJasa,
       });
     }).then((value) {
       /// jika sukses, maka update juga banyak [item] di UI (agar total harga ter-update juga)
@@ -130,18 +130,18 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
       // ambil data current_checkout_items dari data user
       var currentCheckoutItems =
           List.from(user.data()['current_checkout_items'])
-              .map((e) => CheckoutItem.fromJSON(e))
+              .map((e) => CheckoutJasa.fromJSON(e))
               .toList();
 
       /// bikin data [current_checkout_items] yang baru, tanpa item dengan id dari variable [item] (dibuang)
-      var currentCheckoutItemsBaru = currentCheckoutItems
+      var currentCheckoutJasaBaru = currentCheckoutItems
           .where((e) => e.itemId != item.jasa.id)
           .map((e) => e.toJSON())
           .toList();
 
       user.reference.set(
           <String, dynamic>{
-            'current_checkout_items': currentCheckoutItemsBaru,
+            'current_checkout_jasa': currentCheckoutJasaBaru,
           },
           SetOptions(
             merge: true,
