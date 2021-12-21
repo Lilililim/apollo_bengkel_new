@@ -24,7 +24,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
   _ConfirmationPageJasaState({
     required this.checkoutItemJasa,
   });
-
+  DateTime _dateTime = DateTime.now(); //buat milih tanggal jasa
   final List<CheckoutItemJasa> checkoutItemJasa;
   final DateTime dtNow = DateTime.now();
 
@@ -270,6 +270,33 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                   ),
                 ),
               ],
+            ),
+            Container(
+              child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '${_dateTime.day}-${_dateTime.month}-${_dateTime.year}',
+                        style: const TextStyle(
+                          fontSize: 40,
+                          ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          DateTime? _newDate = await showDatePicker(
+                            context: context, 
+                            initialDate: _dateTime, 
+                            firstDate: DateTime(_dateTime.year), 
+                            lastDate: DateTime(_dateTime.year + 2),
+                            );
+                        },
+                        child: const Text('Pilih Tanggal Booking',
+                        style: const TextStyle(
+                          color: Colors.white
+                        )),
+                      ),
+                    ],
+                  )
             ),
             Container(
               height: 40,
