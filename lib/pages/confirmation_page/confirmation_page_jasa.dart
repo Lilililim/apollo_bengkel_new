@@ -289,6 +289,11 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                             firstDate: DateTime(_dateTime.year), 
                             lastDate: DateTime(_dateTime.year + 2),
                             );
+                            if (_newDate != null){
+                              setState(() {
+                                _dateTime = _newDate;
+                              });
+                            }
                         },
                         child: const Text('Pilih Tanggal Booking',
                         style: const TextStyle(
