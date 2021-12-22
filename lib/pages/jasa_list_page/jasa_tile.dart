@@ -145,7 +145,7 @@ class _JasaTileState extends State<JasaTile> {
             Padding(
               padding: const EdgeInsets.only(
                 left: 10.0,
-                bottom: 10.0,
+                bottom: 20.0,
               ),
               child: Text(
                 jasa.namajs,
@@ -154,7 +154,7 @@ class _JasaTileState extends State<JasaTile> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
-                maxLines: 1,
+                maxLines: 3,
                 overflow: TextOverflow.fade,
               ),
             ),

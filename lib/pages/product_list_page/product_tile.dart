@@ -154,7 +154,7 @@ class _ProductTileState extends State<ProductTile> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
-                maxLines: 1,
+                maxLines: 3,
                 overflow: TextOverflow.fade,
               ),
             ),

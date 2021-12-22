@@ -21,10 +21,11 @@ class ConfirmationPageJasa extends StatefulWidget {
 }
 
 class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
+  bool isButtonActive = true;
   _ConfirmationPageJasaState({
     required this.checkoutItemJasa,
   });
-  DateTime _dateTime = DateTime.now(); //buat milih tanggal jasa
+  DateTime? _dateTime = DateTime.now(); //buat milih tanggal jasa
   final List<CheckoutItemJasa> checkoutItemJasa;
   final DateTime dtNow = DateTime.now();
 
@@ -128,13 +129,6 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                           color: Colors.blue,
                         ),
                       ),
-                      trailing: Text(
-                        rupiahFormatter.format(_hargaTotalCheckoutJasa(e)),
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                     ))
                 .toList(),
             Row(
@@ -177,7 +171,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Atas Nama :',
+                            'Atas Nama:',
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: 18,
@@ -196,7 +190,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                           ),
                         ],
                       ),
-                      Row(
+                      /*Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
@@ -204,7 +198,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                               top: 20.0,
                             ),
                             child: Text(
-                              'Alamat :',
+                              'Alamat:',
                               style: TextStyle(
                                 color: Colors.blue,
                                 fontSize: 18,
@@ -230,7 +224,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                             ),
                           ),
                         ],
-                      ),
+                      ),*/
                     ],
                   );
                 }
@@ -246,7 +240,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                     top: 20.0,
                   ),
                   child: Text(
-                    'Tanggal :',
+                    'Tanggal Pemesanan:',
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 18,
@@ -272,22 +266,28 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
               ],
             ),
             Container(
+              margin: const EdgeInsets.only(
+                top: 20.0,
+              ),
               child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        '${_dateTime.day}-${_dateTime.month}-${_dateTime.year}',
+                      _dateTime != null ? DateFormat('dd MMMM yyyy').format(_dateTime!) : "Pilih Tanggal Booking",
+                        //DateFormat('dd MMMM yyyy').format(_dateTime),
                         style: const TextStyle(
-                          fontSize: 40,
+                          color: Colors.blue,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold, 
                           ),
                       ),
                       ElevatedButton(
-                        onPressed: () async {
+                       onPressed: _dateTime == null ? null : () async{
                           DateTime? _newDate = await showDatePicker(
                             context: context, 
-                            initialDate: _dateTime, 
-                            firstDate: DateTime(_dateTime.year), 
-                            lastDate: DateTime(_dateTime.year + 2),
+                            initialDate: DateTime.now()
+                            firstDate: DateTime.now() 
+                            lastDate: DateTime.now().add(Duration(days: 30)),
                             );
                             if (_newDate != null){
                               setState(() {
@@ -306,7 +306,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
             Container(
               height: 40,
               margin: const EdgeInsets.only(
-                top: 30.0,
+                top: 20.0,
               ),
               width: double.infinity,
               child: MaterialButton(
