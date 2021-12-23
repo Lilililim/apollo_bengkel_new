@@ -274,7 +274,6 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                     children: [
                       Text(
                       _dateTime != null ? DateFormat('dd MMMM yyyy').format(_dateTime!) : "Pilih Tanggal Booking",
-                        //DateFormat('dd MMMM yyyy').format(_dateTime),
                         style: const TextStyle(
                           color: Colors.blue,
                           fontSize: 18,
