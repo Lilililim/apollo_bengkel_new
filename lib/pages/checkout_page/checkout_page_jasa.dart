@@ -54,6 +54,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         var checkoutItemJasa = CheckoutItemJasa(
           jasa: jasa,
           amount: item.amount,
+          tanggal: timestamp1,
         );
 
         // ambil data download url

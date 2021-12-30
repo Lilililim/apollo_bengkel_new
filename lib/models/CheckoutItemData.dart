@@ -18,10 +18,12 @@ class CheckoutItemJasa {
   CheckoutItemJasa({
     required this.jasa,
     required this.amount,
+    required this.tanggal,
     this.photoDownloadURL = '',
   });
 
   final Jasa jasa;
   String photoDownloadURL = '';
   int amount;
+  int tanggal;
 }
