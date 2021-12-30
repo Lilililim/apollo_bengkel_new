@@ -13,7 +13,7 @@ class ConfirmationPageJasa extends StatefulWidget {
   }) : super(key: key);
 
   final List<CheckoutItemJasa> checkoutItemJasas;
-
+  
   @override
   _ConfirmationPageJasaState createState() => _ConfirmationPageJasaState(
         checkoutItemJasa: checkoutItemJasas,
