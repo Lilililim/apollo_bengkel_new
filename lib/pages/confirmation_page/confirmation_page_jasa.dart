@@ -38,7 +38,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
   void _navigateToPaymentMethodPage() {
     Navigator.pushNamed(
       context,
-      '/payment_method_page',
+      '/payment_method_page_js',
     ).then((_) => setState(() {}));
   }
 

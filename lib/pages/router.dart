@@ -1,4 +1,5 @@
 import 'package:apollo_bengkel/models/CheckoutHistoryItem.dart';
+import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/pages/checkout_page/checkout_page.dart';
 import 'package:apollo_bengkel/pages/checkout_page/checkout_page_jasa.dart';
@@ -8,6 +9,7 @@ import 'package:apollo_bengkel/pages/home_page/home_page.dart';
 import 'package:apollo_bengkel/pages/login_page/login_page.dart';
 import 'package:apollo_bengkel/pages/order_histories_page/order_histories_page.dart';
 import 'package:apollo_bengkel/pages/order_history_detail_page/order_history_detail_page.dart';
+import 'package:apollo_bengkel/pages/order_history_detail_page/order_history_detail_js_page.dart';
 import 'package:apollo_bengkel/pages/payment_method_page/payment_method_page.dart';
 import 'package:apollo_bengkel/pages/product_detail_page/product_detail_page.dart';
 import 'package:apollo_bengkel/pages/product_list_page/product_list_page.dart';
@@ -15,10 +17,12 @@ import 'package:apollo_bengkel/pages/profile_page/profile_page.dart';
 import 'package:apollo_bengkel/pages/register_page/register_page.dart';
 import 'package:apollo_bengkel/pages/splashscreen_page/splashscreen_page.dart';
 import 'package:apollo_bengkel/pages/success_buy_page/success_buy_page.dart';
+import 'package:apollo_bengkel/pages/success_buy_page/success_buy_page_js.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:apollo_bengkel/pages/jasa_detail_page/jasa_detail_page.dart';
 import 'package:apollo_bengkel/pages/jasa_list_page/jasa_list_page.dart';
+import 'package:apollo_bengkel/pages/payment_account_jasa/payment_method_page_js.dart';
 
 Route? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -71,7 +75,7 @@ Route? onGenerateRoute(RouteSettings settings) {
           checkoutItemDatas: checkoutItemDatas,
         ),
       );
-      case '/confirmation_page_jasa':
+    case '/confirmation_page_jasa':
       var args = (settings.arguments as Map<String, dynamic>);
       var checkoutItemJasas =
           args['checkoutItemJasa'] as List<CheckoutItemJasa>;
@@ -90,6 +94,16 @@ Route? onGenerateRoute(RouteSettings settings) {
         ),
       );
 
+    case '/success_buy_page_js':
+      var args = (settings.arguments as Map<String, dynamic>);
+      var checkoutHistoryItemId = args['checkoutHistoryItemId'] as String;
+
+      return MaterialPageRoute(
+        builder: (_) => SuccessBuyJsPage(
+          checkoutHistoryItemId: checkoutHistoryItemId,
+        ),
+      );
+
     case '/order_histories_page':
       return MaterialPageRoute(
         builder: (_) => OrderHistoriesPage(),
@@ -98,6 +112,11 @@ Route? onGenerateRoute(RouteSettings settings) {
     case '/payment_method_page':
       return MaterialPageRoute(
         builder: (_) => PaymentMethodPage(),
+      );
+
+    case '/payment_method_page_js':
+      return MaterialPageRoute(
+        builder: (_) => PaymentMethodPageJs(),
       );
 
     case '/order_history_detail_page':
@@ -109,12 +128,22 @@ Route? onGenerateRoute(RouteSettings settings) {
           checkoutHistoryItem: checkoutHistoryItem,
         ),
       );
+
+    case '/order_history_detail_js_page':
+      var args = (settings.arguments as Map<String, dynamic>);
+      var checkoutHistoryJasa =
+          args['checkoutHistoryItem'] as CheckoutHistoryJasa;
+      return MaterialPageRoute(
+        builder: (_) => OrderHistoryDetailPageJs(
+          checkoutHistoryJasa: checkoutHistoryJasa,
+        ),
+      );
+
     case '/jasa_list_page':
       var args = (settings.arguments as Map<String, dynamic>);
       var kategoriJasa = args['kategoriJasa'] as KategoriJasaListPage;
       return MaterialPageRoute(
-        builder: (_) =>
-            JasaListPage(initialKategoriJasaListPage: kategoriJasa),
+        builder: (_) => JasaListPage(initialKategoriJasaListPage: kategoriJasa),
       );
     case '/jasa_detail_page':
       var jasa = ((settings.arguments) as Map<String, dynamic>)['jasa'];

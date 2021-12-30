@@ -1,4 +1,4 @@
-import 'package:apollo_bengkel/models/CheckoutItem.dart';
+import 'package:apollo_bengkel/models/CheckoutJasa.dart';
 import 'package:apollo_bengkel/utils.dart';
 
 enum StatusCheckoutHistoryItem {
@@ -7,12 +7,13 @@ enum StatusCheckoutHistoryItem {
   Sampai,
 }
 
-class CheckoutHistoryItem {
-  CheckoutHistoryItem({
+class CheckoutHistoryJasa {
+  CheckoutHistoryJasa({
     this.id,
     required this.userId,
     required this.time,
-    required this.checkoutItems,
+    required this.checkoutJasas,
+    // required this.antrian,
     required this.status,
     required this.paymentMethod,
     this.noVirtualAccount,
@@ -22,7 +23,8 @@ class CheckoutHistoryItem {
   String? id;
   final String userId;
   final DateTime time;
-  final List<CheckoutItem> checkoutItems;
+  final List<CheckoutJasa> checkoutJasas;
+  // final int antrian;
   StatusCheckoutHistoryItem status;
   final PaymentMethod paymentMethod;
 
@@ -30,14 +32,15 @@ class CheckoutHistoryItem {
   String? noVirtualAccount;
   Bank? bank;
 
-  factory CheckoutHistoryItem.fromJSON(Map<String, dynamic> map) =>
-      CheckoutHistoryItem(
+  factory CheckoutHistoryJasa.fromJSON(Map<String, dynamic> map) =>
+      CheckoutHistoryJasa(
         id: map['id'],
         userId: map['user_id'],
         time: DateTime.fromMillisecondsSinceEpoch(map['time']),
-        checkoutItems: (map['checkout_items'] as List)
-            .map((e) => CheckoutItem.fromJSON(e))
+        checkoutJasas: (map['checkout_jasa'] as List)
+            .map((e) => CheckoutJasa.fromJSON(e))
             .toList(),
+        // antrian: map['no_antrian'],
         status: stringToStatus(map['status']),
         paymentMethod: stringToPaymentMethod(map['payment_method']),
         noVirtualAccount: map['no_vc'],
@@ -47,7 +50,8 @@ class CheckoutHistoryItem {
   Map<String, dynamic> toJSON() => {
         'user_id': userId,
         'time': time.millisecondsSinceEpoch,
-        'checkout_items': checkoutItems.map((e) => e.toJSON()).toList(),
+        'checkout_jasa': checkoutJasas.map((e) => e.toJSON()).toList(),
+        // 'no_antrian': antrian.map((e)=>e.to),
         'status': statusToString(status),
         'payment_method': paymentMethodToString(paymentMethod),
         'no_vc': noVirtualAccount,

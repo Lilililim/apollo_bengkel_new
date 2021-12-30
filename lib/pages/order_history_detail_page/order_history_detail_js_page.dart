@@ -1,5 +1,5 @@
 import 'package:apollo_bengkel/firebase.dart';
-import 'package:apollo_bengkel/models/CheckoutHistoryItem.dart';
+import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/models/Product.dart';
 import 'package:apollo_bengkel/models/Jasa.dart';
@@ -7,28 +7,29 @@ import 'package:apollo_bengkel/models/UserData.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class OrderHistoryDetailPageJs extends StatefulWidget {
   const OrderHistoryDetailPageJs({
     Key? key,
-    required this.checkoutHistoryItem,
+    required this.checkoutHistoryJasa,
   }) : super(key: key);
 
-  final CheckoutHistoryItem checkoutHistoryItem;
+  final CheckoutHistoryJasa checkoutHistoryJasa;
 
   @override
   _OrderHistoryDetailPageJsState createState() =>
       _OrderHistoryDetailPageJsState(
-        checkoutHistoryItem: checkoutHistoryItem,
+        checkoutHistoryJasa: checkoutHistoryJasa,
       );
 }
 
 class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
-  _OrderHistoryDetailPageJsState({required this.checkoutHistoryItem});
+  _OrderHistoryDetailPageJsState({required this.checkoutHistoryJasa});
 
-  final CheckoutHistoryItem checkoutHistoryItem;
+  final CheckoutHistoryJasa checkoutHistoryJasa;
 
-  List<CheckoutItemData> _checkoutItemDatas = [];
+  List<CheckoutItemJasa> _checkoutItemJasas = [];
 
   void _goBack() {
     Navigator.pop(context);
@@ -36,52 +37,53 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
 
   /// untuk ambil data user
   Future<UserData> _getUserData() async {
-    var query = firestore.collection('/users').doc(checkoutHistoryItem.userId);
+    var query = firestore.collection('/users').doc(checkoutHistoryJasa.userId);
 
     return await query.get().then((doc) => UserData.fromJSON(doc.data()!));
   }
 
   Future<void> _getCheckoutItemDatas() async {
-    var checkoutItems = checkoutHistoryItem.checkoutItems;
-    var query = firestore.collection('product').where(FieldPath.documentId,
+    var checkoutItems = checkoutHistoryJasa.checkoutJasas;
+    var query = firestore.collection('jasa').where(FieldPath.documentId,
         whereIn: checkoutItems.map((e) => e.itemId).toList());
 
     /// ambil semua product di checkout, dan ubah ke CheckoutItemData
     await query.get().then((col) => col.docs.asMap().entries.forEach(
           (e) async {
             /// bikin item checkout disini
-            var checkoutItemData = CheckoutItemData(
-              product: Product.fromJSON(
+            var checkoutItemData = CheckoutItemJasa(
+              jasa: Jasa.fromJSON(
                 <String, dynamic>{
                   'id': e.value.reference.id,
                   ...e.value.data(),
                 },
               ),
               amount: checkoutItems[e.key].amount,
+              tanggal: checkoutItems[e.key].tanggal,
             );
 
             /// ambil url foto dari firebase storage
             checkoutItemData.photoDownloadURL = await firestorage
                 .refFromURL(
-                    'gs://apolo-bengkel.appspot.com/app/foto_produk/${Product.kategoriToString(checkoutItemData.product.kategoriProduct)}/${checkoutItemData.product.photoNamepr}')
+                    'gs://apolo-bengkel.appspot.com/app/foto_jasa/${Jasa.kategoriToString(checkoutItemData.jasa.kategoriJasa)}/${checkoutItemData.jasa.photoNamejs}')
                 .getDownloadURL();
 
             setState(() {
-              _checkoutItemDatas.add(checkoutItemData);
+              _checkoutItemJasas.add(checkoutItemData);
             });
           },
         ));
   }
 
   /// untuk menghitung harga product setelah diskon
-  num _hargaSetelahDiskon(Product p) => p.hargapr - p.hargapr * p.promo;
+  num _hargaSetelahDiskon(Jasa p) => p.hargajs - p.hargajs * p.promojs;
 
   /// untuk menghitung harga product setelah diskon dikali banyak item
-  num _hargaTotalCheckoutItem(CheckoutItemData c) =>
-      _hargaSetelahDiskon(c.product) * c.amount;
+  num _hargaTotalCheckoutItem(CheckoutItemJasa c) =>
+      _hargaSetelahDiskon(c.jasa) * c.amount;
 
   /// untuk menghitung harga total semua item yang di checkout
-  num _hargaTotalCheckoutItems(List<CheckoutItemData> checkoutItemDatas) =>
+  num _hargaTotalCheckoutItems(List<CheckoutItemJasa> checkoutItemDatas) =>
       checkoutItemDatas.fold(0, (p, e) => p + _hargaTotalCheckoutItem(e));
 
   @override
@@ -119,13 +121,13 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
   }
 
   Widget _body() {
-    var metodePembayaran = CheckoutHistoryItem.paymentMethodToString(
-      checkoutHistoryItem.paymentMethod,
+    var metodePembayaran = CheckoutHistoryJasa.paymentMethodToString(
+      checkoutHistoryJasa.paymentMethod,
     );
 
-    var status = CheckoutHistoryItem.statusToString(checkoutHistoryItem.status);
-    var bank = CheckoutHistoryItem.bankToString(checkoutHistoryItem.bank);
-    var noVA = checkoutHistoryItem.noVirtualAccount;
+    var status = CheckoutHistoryJasa.statusToString(checkoutHistoryJasa.status);
+    var bank = CheckoutHistoryJasa.bankToString(checkoutHistoryJasa.bank);
+    var noVA = checkoutHistoryJasa.noVirtualAccount;
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -153,7 +155,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                     ),
                   ),
                   Text(
-                    checkoutHistoryItem.id!,
+                    checkoutHistoryJasa.id!,
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 18,
@@ -225,6 +227,35 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: 10.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Tanggal Booking: ',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                DateFormat('dd/MM/yy').format(
+                                    DateTime.fromMillisecondsSinceEpoch(
+                                        _checkoutItemJasas.first.tanggal)),
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     );
                   }
@@ -252,7 +283,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                ..._checkoutItemDatas.map((e) {
+                ..._checkoutItemJasas.map((e) {
                   print('e => ${e.amount}');
                   return ListTile(
                     leading: Container(
@@ -261,13 +292,13 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                       child: Image.network(e.photoDownloadURL),
                     ),
                     title: Text(
-                      '${e.product.namapr} (x${e.amount})',
+                      '${e.jasa.namajs} (x${e.amount})',
                       style: TextStyle(
                         color: Colors.blue,
                       ),
                     ),
                     subtitle: Text(
-                      '${rupiahFormatter.format(_hargaSetelahDiskon(e.product))}',
+                      '${rupiahFormatter.format(_hargaSetelahDiskon(e.jasa))}',
                       style: TextStyle(
                         color: Colors.blue,
                       ),
@@ -294,7 +325,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                     ),
                     Text(
                       rupiahFormatter
-                          .format(_hargaTotalCheckoutItems(_checkoutItemDatas)),
+                          .format(_hargaTotalCheckoutItems(_checkoutItemJasas)),
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: 18,
@@ -340,7 +371,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                 ],
               ),
             ),
-            if (checkoutHistoryItem.paymentMethod ==
+            if (checkoutHistoryJasa.paymentMethod ==
                 PaymentMethod.VirtualAccount) ...<Widget>[
               Padding(
                 padding: const EdgeInsets.only(

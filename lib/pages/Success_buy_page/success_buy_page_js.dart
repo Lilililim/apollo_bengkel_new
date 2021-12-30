@@ -1,5 +1,5 @@
 import 'package:apollo_bengkel/firebase.dart';
-import 'package:apollo_bengkel/models/CheckoutHistoryItem.dart';
+import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
 import 'package:apollo_bengkel/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,13 +45,13 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
     );
   }
 
-  Future<CheckoutHistoryItem?> _getCheckoutHistoryItem() async {
+  Future<CheckoutHistoryJasa?> _getCheckoutHistoryItem() async {
     var docRef =
         firestore.collection('/checkoutHistories').doc(checkoutHistoryItemId);
 
     return await docRef.get().then((d) {
       if (d.exists) {
-        return CheckoutHistoryItem.fromJSON({
+        return CheckoutHistoryJasa.fromJSON({
           'id': d.id,
           ...d.data()!,
         });
@@ -77,7 +77,7 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
       padding: const EdgeInsets.only(
         top: 40.0,
       ),
-      child: FutureBuilder<CheckoutHistoryItem?>(
+      child: FutureBuilder<CheckoutHistoryJasa?>(
         future: _getCheckoutHistoryItem(),
         builder: (_, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
@@ -103,124 +103,124 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
                 SizedBox(
                   height: 80,
                 ),
-                if (item.paymentMethod ==
-                    PaymentMethod.VirtualAccount) ...<Widget>[
-                  Center(
-                    child: Text(
-                      'No. Virtual Account (${item.bank})',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        item.noVirtualAccount!,
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () =>
-                            _copyToClipBoard(item.noVirtualAccount!),
-                        icon: Icon(
-                          Icons.copy,
-                          color: Colors.blue,
-                        ),
-                        splashColor: Colors.blue,
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20.0,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Status: ${CheckoutHistoryItem.statusToString(item.status)}',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      'Jika Sudah Membayar Silahkan Kirim ',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      'Bukti Pembayaran Ke nomor dibawah ini ',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      '085161692108',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20.0,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Harap dibayar sebelum 2 jam',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      'untuk mempermudah pengiriman',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
-                  )
-                ],
-                if (item.paymentMethod !=
-                    PaymentMethod.VirtualAccount) ...<Widget>[
-                  Center(
-                    child: Text(
-                      'Barang akan dikirm ke alamat anda !',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      'Status: ${CheckoutHistoryItem.statusToString(item.status)}',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
+                // if (item.paymentMethod ==
+                //     PaymentMethod.VirtualAccount) ...<Widget>[
+                //   Center(
+                //     child: Text(
+                //       'No. Virtual Account (${item.bank})',
+                //       style: TextStyle(
+                //         color: Colors.blue,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   ),
+                //   Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: <Widget>[
+                //       Text(
+                //         item.noVirtualAccount!,
+                //         style: TextStyle(
+                //           fontSize: 24,
+                //           color: Colors.blue,
+                //         ),
+                //       ),
+                //       IconButton(
+                //         onPressed: () =>
+                //             _copyToClipBoard(item.noVirtualAccount!),
+                //         icon: Icon(
+                //           Icons.copy,
+                //           color: Colors.blue,
+                //         ),
+                //         splashColor: Colors.blue,
+                //       ),
+                //     ],
+                //   ),
+                //   Padding(
+                //     padding: const EdgeInsets.only(
+                //       top: 20.0,
+                //     ),
+                //     child: Center(
+                //       child: Text(
+                //         'Status: ${CheckoutHistoryJasa.statusToString(item.status)}',
+                //         style: TextStyle(
+                //           color: Colors.blue,
+                //           fontSize: 18,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                //   Center(
+                //     child: Text(
+                //       'Jika Sudah Membayar Silahkan Kirim ',
+                //       style: TextStyle(
+                //         color: Colors.blue,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   ),
+                //   Center(
+                //     child: Text(
+                //       'Bukti Pembayaran Ke nomor dibawah ini ',
+                //       style: TextStyle(
+                //         color: Colors.blue,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   ),
+                //   Center(
+                //     child: Text(
+                //       '085161692108',
+                //       style: TextStyle(
+                //         color: Colors.blue,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   ),
+                //   Padding(
+                //     padding: const EdgeInsets.only(
+                //       top: 20.0,
+                //     ),
+                //     child: Center(
+                //       child: Text(
+                //         'Harap dibayar sebelum 2 jam',
+                //         style: TextStyle(
+                //           color: Colors.blue,
+                //           fontSize: 18,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                //   Center(
+                //     child: Text(
+                //       'untuk mempermudah pengiriman',
+                //       style: TextStyle(
+                //         color: Colors.blue,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   )
+                // ],
+                // if (item.paymentMethod !=
+                //     PaymentMethod.VirtualAccount) ...<Widget>[
+                //   Center(
+                //     child: Text(
+                //       'Barang akan dikirm ke alamat anda !',
+                //       style: TextStyle(
+                //         color: Colors.blue,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   ),
+                //   Center(
+                //     child: Text(
+                //       'Status: ${CheckoutHistoryItem.statusToString(item.status)}',
+                //       style: TextStyle(
+                //         color: Colors.blue,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   ),
+                // ],
                 Spacer(),
                 Container(
                   margin: const EdgeInsets.only(
