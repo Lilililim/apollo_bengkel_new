@@ -13,21 +13,23 @@ class ConfirmationPageJasa extends StatefulWidget {
   }) : super(key: key);
 
   final List<CheckoutItemJasa> checkoutItemJasas;
-  
+
   @override
-  _ConfirmationPageJasaState createState() => _ConfirmationPageJasaState(
-        checkoutItemJasa: checkoutItemJasas,
-      );
+  _ConfirmationPageJasaState createState() => _ConfirmationPageJasaState();
 }
 
 class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
   bool isButtonActive = true;
-  _ConfirmationPageJasaState({
-    required this.checkoutItemJasa,
-  });
   DateTime? _dateTime = DateTime.now(); //buat milih tanggal jasa
-  final List<CheckoutItemJasa> checkoutItemJasa;
+  List<CheckoutItemJasa> checkoutItemJasa = [];
   final DateTime dtNow = DateTime.now();
+
+  @override
+  void initState() {
+    _getUserData();
+    checkoutItemJasa = widget.checkoutItemJasas;
+    super.initState();
+  }
 
   void _goBack() {
     Navigator.pop(context);
@@ -40,28 +42,24 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
     ).then((_) => setState(() {}));
   }
 
-  Future<UserData> _getUserData() async {
-    var email = fireAuth.currentUser!.email;
-    var query = firestore.collection('/users').where('email', isEqualTo: email);
-
-    return await query
-        .get()
-        .then((col) => col.docs.first)
-        .then((doc) => UserData.fromJSON(doc.data()));
-  }
-
   num _hargaSetelahDiskon(Jasa p) => p.hargajs - p.hargajs * p.promojs;
 
   num _hargaTotalCheckoutJasa(CheckoutItemJasa c) =>
       _hargaSetelahDiskon(c.jasa) * c.amount;
 
-  num _hargaTotalCheckoutJs() =>
-      checkoutItemJasa.fold(0, (p, e) => p + _hargaTotalCheckoutJasa(e));
+  num _hargaTotalCheckoutJs(items) =>
+      items.fold(0, (p, e) => p + _hargaTotalCheckoutJasa(e));
 
-  @override
-  void initState() {
-    super.initState();
-    _getUserData();
+  Future<UserData> _getUserData() async {
+    var email = fireAuth.currentUser!.email;
+    var query = firestore.collection('/users').where('email', isEqualTo: email);
+
+    final userData = await query
+        .get()
+        .then((col) => col.docs.first)
+        .then((doc) => UserData.fromJSON(doc.data()));
+
+    return userData;
   }
 
   @override
@@ -143,7 +141,8 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                   ),
                 ),
                 Text(
-                  rupiahFormatter.format(_hargaTotalCheckoutJs()),
+                  rupiahFormatter
+                      .format(_hargaTotalCheckoutJs(checkoutItemJasa)),
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 18,
@@ -265,43 +264,6 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                 ),
               ],
             ),
-            // Container(
-            //   margin: const EdgeInsets.only(
-            //     top: 20.0,
-            //   ),
-            //   child: Column(
-            //         mainAxisSize: MainAxisSize.min,
-            //         children: [
-            //           Text(
-            //           _dateTime != null ? DateFormat('dd MMMM yyyy').format(_dateTime!) : "Pilih Tanggal Booking",
-            //             style: const TextStyle(
-            //               color: Colors.blue,
-            //               fontSize: 18,
-            //               fontWeight: FontWeight.bold, 
-            //               ),
-            //           ),
-            //           ElevatedButton(
-            //            onPressed: _dateTime == null ? null : () async{
-            //               DateTime? _newDate = await showDatePicker(
-            //                 context: context, 
-            //                 initialDate: DateTime.now()
-            //                 firstDate: DateTime.now() 
-            //                 lastDate: DateTime.now().add(Duration(days: 30)),
-            //                 );
-            //                 if (_newDate != null){
-            //                   setState(() {
-            //                     _dateTime = _newDate;
-            //                   });
-            //                 }
-            //             },
-            //             child: const Text('Pilih Tanggal Booking',
-            //             style: const TextStyle(
-            //               color: Colors.white
-            //             )),
-            //           ),
-            //         ],
-            //       )
-            // ),
             Container(
               height: 40,
               margin: const EdgeInsets.only(

@@ -34,7 +34,7 @@ class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
 
   // untuk beli product
   int banyak = 1;
-  int waktu = 1;
+  int waktu = 0;
 
   num hargaTotal() =>
       ((jasa.hargajs - jasa.hargajs * jasa.promojs) * banyak).toInt();

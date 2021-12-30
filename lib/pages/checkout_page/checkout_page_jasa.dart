@@ -19,7 +19,8 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     DateTime? _dateTime = DateTime.now(); //buat milih tanggal jasa
     //final List<CheckoutItemJasa> checkoutItemJasa;
     final DateTime dtNow = DateTime.now();// untuk ambil data checkout awal dan pada saat refresh halaman
-    int timestamp1 = 1;
+    int timestamp1 = 0;
+    int? timestamp2;
   Future<void> _fetchCurrentCheckoutData() async {
     // ambil current_checkout_item dari user saat ini
     List<CheckoutJasa> currentCheckoutJasa = [];
@@ -54,7 +55,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         var checkoutItemJasa = CheckoutItemJasa(
           jasa: jasa,
           amount: item.amount,
-          tanggal: timestamp1,
+          tanggal: timestamp1!,
         );
 
         // ambil data download url
@@ -86,7 +87,9 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     var email = fireAuth.currentUser!.email;
     var query = firestore.collection('/users').where('email', isEqualTo: email);
     List<CheckoutJasa> tempCheckoutJasa = [];
-
+    if(timestamp1 == 0){
+      return;
+    }
     // ambil semua checkout item dulu
     await query.get().then((col) => col.docs.first).then((user) async {
       /// ambil semua item kecuali item dengan id dari variable [item]
@@ -100,7 +103,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         CheckoutJasa(
           itemId: item.jasa.id,
           amount: banyak,
-          tanggal: timestamp1,
+          tanggal: timestamp1!,
         ),
       );
 
@@ -119,6 +122,12 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
             .where((e) => e.jasa.id == item.jasa.id)
             .first
             .amount = banyak;
+      });
+      setState(() {
+        _currentCheckoutItemJasa
+            .where((e) => e.jasa.id == item.jasa.id)
+            .first
+            .tanggal = timestamp1!;
       });
     });
   }
@@ -164,11 +173,81 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     return;
   }
 
-  void _navigateToConfirmationPage() {
-    Navigator.pushNamed(context, '/confirmation_page_jasa',
-        arguments: <String, dynamic>{
-          'checkoutItemJasa': _currentCheckoutItemJasa,
+  void _navigateToConfirmationPage() async {
+    if(timestamp1 != 0){
+      var email = fireAuth.currentUser!.email;
+      var query = firestore.collection('/users').where('email', isEqualTo: email);
+    
+      List<CheckoutJasa> tempCheckoutJasa = [];
+      final List<CheckoutItemJasa> checkoutItemJasas = [];
+    // ambil semua checkout item dulu
+    await query.get().then((col) => col.docs.first).then((user) async {
+      /// ambil semua item kecuali item dengan id dari variable [item]
+      tempCheckoutJasa = (user.data()['current_checkout_jasa'] as List)
+          .map((e) => CheckoutJasa.fromJSON(e))
+          .map((item) {
+            item.tanggal = timestamp1;
+            return item;
+           })
+          .toList();
+
+      /// buat tiap anggotanya ke bentuk map<string, dynamic> agar bisa di save ke firestore
+      var newCurrentCheckoutJasa =
+          tempCheckoutJasa.map((e) => e.toJSON()).toList();
+
+      /// lalu update data [current_checkout_items] di firestore dengan array yang baru
+      await user.reference.update({
+        'current_checkout_jasa': newCurrentCheckoutJasa,
+      });
+        return tempCheckoutJasa;
+    }).then((checkoutJasas) {
+      /// jika sukses, maka update juga banyak [item] di UI (agar total harga ter-update juga)
+      
+      
+      Future.wait(checkoutJasas.map((item) async {
+      await firestore
+          .collection('/jasa')
+          .doc(item.itemId)
+          .get()
+          .then(
+            (doc) => Jasa.fromJSON(
+              <String, dynamic>{
+                ...doc.data()!,
+                'id': item.itemId,
+              },
+            ),
+          )
+          .then((jasa) async {
+            
+        var checkoutItemJasa = CheckoutItemJasa(
+          jasa: jasa,
+          amount: item.amount,
+          tanggal: timestamp1!,
+        );
+
+        // ambil data download url
+        var photoName = jasa.photoNamejs;
+        var kategori = Jasa.kategoriToString(jasa.kategoriJasa);
+
+        var refURL =
+            'gs://apolo-bengkel.appspot.com/app/foto_jasa/$kategori/$photoName';
+
+        var photoDownloadURL =
+            await firestorage.refFromURL(refURL).getDownloadURL();
+
+        checkoutItemJasa.photoDownloadURL = photoDownloadURL;
+
+        checkoutItemJasas.add(checkoutItemJasa);
         });
+      })).then((value) {
+      Navigator.pushNamed(context, '/confirmation_page_jasa',
+
+        arguments: <String, dynamic>{
+          'checkoutItemJasa': checkoutItemJasas,
+      });
+      });
+    });
+    }
   }
 
   num _hargaSetelahDiskon(Jasa jasa) =>
@@ -275,6 +354,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
                         initialValue: itemData.amount,
                         maxValue: 100,
                         minValue: 1,
+
                       ),
                     ),
                   ),
@@ -311,6 +391,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
                       setState(() {
                         _dateTime = _newDate;
                         timestamp1 = _newDate.millisecondsSinceEpoch;
+                        //timestamp2 = timestamp1;
                       });
                     }
                 },
