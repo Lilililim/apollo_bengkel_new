@@ -265,43 +265,43 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                 ),
               ],
             ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 20.0,
-              ),
-              child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                      _dateTime != null ? DateFormat('dd MMMM yyyy').format(_dateTime!) : "Pilih Tanggal Booking",
-                        style: const TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold, 
-                          ),
-                      ),
-                      ElevatedButton(
-                       onPressed: _dateTime == null ? null : () async{
-                          DateTime? _newDate = await showDatePicker(
-                            context: context, 
-                            initialDate: DateTime.now()
-                            firstDate: DateTime.now() 
-                            lastDate: DateTime.now().add(Duration(days: 30)),
-                            );
-                            if (_newDate != null){
-                              setState(() {
-                                _dateTime = _newDate;
-                              });
-                            }
-                        },
-                        child: const Text('Pilih Tanggal Booking',
-                        style: const TextStyle(
-                          color: Colors.white
-                        )),
-                      ),
-                    ],
-                  )
-            ),
+            // Container(
+            //   margin: const EdgeInsets.only(
+            //     top: 20.0,
+            //   ),
+            //   child: Column(
+            //         mainAxisSize: MainAxisSize.min,
+            //         children: [
+            //           Text(
+            //           _dateTime != null ? DateFormat('dd MMMM yyyy').format(_dateTime!) : "Pilih Tanggal Booking",
+            //             style: const TextStyle(
+            //               color: Colors.blue,
+            //               fontSize: 18,
+            //               fontWeight: FontWeight.bold, 
+            //               ),
+            //           ),
+            //           ElevatedButton(
+            //            onPressed: _dateTime == null ? null : () async{
+            //               DateTime? _newDate = await showDatePicker(
+            //                 context: context, 
+            //                 initialDate: DateTime.now()
+            //                 firstDate: DateTime.now() 
+            //                 lastDate: DateTime.now().add(Duration(days: 30)),
+            //                 );
+            //                 if (_newDate != null){
+            //                   setState(() {
+            //                     _dateTime = _newDate;
+            //                   });
+            //                 }
+            //             },
+            //             child: const Text('Pilih Tanggal Booking',
+            //             style: const TextStyle(
+            //               color: Colors.white
+            //             )),
+            //           ),
+            //         ],
+            //       )
+            // ),
             Container(
               height: 40,
               margin: const EdgeInsets.only(

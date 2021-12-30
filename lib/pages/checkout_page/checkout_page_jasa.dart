@@ -6,16 +6,20 @@ import 'package:apollo_bengkel/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_number_picker/flutter_number_picker.dart';
+import 'package:intl/intl.dart';
 
 class CheckoutPageJasa extends StatefulWidget {
   @override
   _CheckoutPageJasaState createState() => _CheckoutPageJasaState();
+  
 }
 
 class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
   List<CheckoutItemJasa> _currentCheckoutItemJasa = [];
-
-  // untuk ambil data checkout awal dan pada saat refresh halaman
+    DateTime? _dateTime = DateTime.now(); //buat milih tanggal jasa
+    //final List<CheckoutItemJasa> checkoutItemJasa;
+    final DateTime dtNow = DateTime.now();// untuk ambil data checkout awal dan pada saat refresh halaman
+    
   Future<void> _fetchCurrentCheckoutData() async {
     // ambil current_checkout_item dari user saat ini
     List<CheckoutJasa> currentCheckoutJasa = [];
@@ -276,6 +280,43 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
               );
             },
           ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(
+            top: 20.0,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+              _dateTime != null ? DateFormat('dd MMMM yyyy').format(_dateTime!) : "Pilih Tanggal Booking",
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold, 
+                  ),
+              ),
+              ElevatedButton(
+                onPressed: _dateTime == null ? null : () async{
+                  DateTime? _newDate = await showDatePicker(
+                    context: context, 
+                    initialDate: DateTime.now()
+                    firstDate: DateTime.now() 
+                    lastDate: DateTime.now().add(Duration(days: 30)),
+                    );
+                    if (_newDate != null){
+                      setState(() {
+                        _dateTime = _newDate;
+                      });
+                    }
+                },
+                child: const Text('Pilih Tanggal Booking',
+                style: const TextStyle(
+                  color: Colors.white
+                )),
+              ),
+            ],
+          )
         ),
         Container(
           alignment: Alignment.bottomCenter,
