@@ -282,6 +282,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
           ),
         ),
         Container(
+          alignment: Alignment.bottomCenter,
           margin: const EdgeInsets.only(
             top: 20.0,
           ),
