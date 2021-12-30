@@ -19,7 +19,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     DateTime? _dateTime = DateTime.now(); //buat milih tanggal jasa
     //final List<CheckoutItemJasa> checkoutItemJasa;
     final DateTime dtNow = DateTime.now();// untuk ambil data checkout awal dan pada saat refresh halaman
-    
+    int timestamp1 = 1;
   Future<void> _fetchCurrentCheckoutData() async {
     // ambil current_checkout_item dari user saat ini
     List<CheckoutJasa> currentCheckoutJasa = [];
@@ -99,6 +99,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         CheckoutJasa(
           itemId: item.jasa.id,
           amount: banyak,
+          tanggal: timestamp1,
         ),
       );
 
@@ -308,6 +309,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
                     if (_newDate != null){
                       setState(() {
                         _dateTime = _newDate;
+                        timestamp1 = _newDate.millisecondsSinceEpoch;
                       });
                     }
                 },
