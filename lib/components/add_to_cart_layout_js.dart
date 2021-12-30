@@ -34,6 +34,7 @@ class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
 
   // untuk beli product
   int banyak = 1;
+  int waktu = 1;
 
   num hargaTotal() =>
       ((jasa.hargajs - jasa.hargajs * jasa.promojs) * banyak).toInt();
@@ -73,6 +74,7 @@ class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
           CheckoutJasa(
             itemId: jasa.id,
             amount: banyak,
+            tanggal: waktu,
           ),
         );
 
@@ -95,6 +97,10 @@ class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
             .singleWhere((element) => element.itemId == jasa.id)
             .amount;
 
+        var tanggaljasa = allCurrentCheckoutJasa
+            .singleWhere((element) => element.itemId == jasa.id)
+            .tanggal;
+
         /// ambil semua item dari allCheckoutItems kecuali item dengan id dari variable [product]
         tempCheckoutJasa = allCurrentCheckoutJasa
             .where(
@@ -107,6 +113,7 @@ class _AddToCartLayoutJsState extends State<AddToCartLayoutJs> {
           CheckoutJasa(
             itemId: jasa.id,
             amount: banyak + amountJasaSebelum,
+            tanggal: waktu * tanggaljasa,
           ),
         );
 
