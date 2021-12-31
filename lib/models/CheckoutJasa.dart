@@ -11,7 +11,7 @@ class CheckoutJasa {
         itemId: map['item_id'],
         amount: map['amount'],
         tanggal: map['tanggaljs'],
-        //total: map['totalharga']
+        //total: map['totalharga'],
       );
 
   Map<String, dynamic> toJSON() => {
