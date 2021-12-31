@@ -45,7 +45,7 @@ class _CashTabJsState extends State<CashTabJs> {
         userId: doc.id,
         time: dtNow,
         checkoutJasas: checkoutJasas,
-        status: StatusCheckoutHistoryItem.Dikirim,
+        status: StatusCheckoutHistoryItem.Ditunggu,
         paymentMethod: PaymentMethod.Cash,
       );
 

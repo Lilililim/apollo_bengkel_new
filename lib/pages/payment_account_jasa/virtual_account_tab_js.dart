@@ -56,7 +56,7 @@ class _VirtualAccountTabJsState extends State<VirtualAccountTabJs> {
         userId: doc.id,
         time: dtNow,
         checkoutJasas: checkoutJasa,
-        status: StatusCheckoutHistoryItem.Menunggu_Pembayaran,
+        status: StatusCheckoutHistoryItem.Belum_Datang,
         paymentMethod: PaymentMethod.VirtualAccount,
         bank: _currentBank,
         noVirtualAccount: getRandom16Digit(),

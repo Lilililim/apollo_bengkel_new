@@ -2,9 +2,9 @@ import 'package:apollo_bengkel/models/CheckoutJasa.dart';
 import 'package:apollo_bengkel/utils.dart';
 
 enum StatusCheckoutHistoryItem {
-  Menunggu_Pembayaran,
-  Dikirim,
-  Sampai,
+  Belum_Datang,
+  DiKerjakan,
+  Selesai,
 }
 
 class CheckoutHistoryJasa {
