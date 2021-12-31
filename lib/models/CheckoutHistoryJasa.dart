@@ -52,7 +52,7 @@ class CheckoutHistoryJasa {
         'user_id': userId,
         'time': time.millisecondsSinceEpoch,
         'checkout_jasa': checkoutJasas.map((e) => e.toJSON()).toList(),
-        // 'no_antrian': antrian.map((e)=>e.to),
+        //'no_antrian': antrian.map((e)=>e.to),
         'status': statusToString(status),
         'payment_method': paymentMethodToString(paymentMethod),
         'no_vc': noVirtualAccount,
