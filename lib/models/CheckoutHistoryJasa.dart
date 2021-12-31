@@ -14,7 +14,7 @@ class CheckoutHistoryJasa {
     required this.userId,
     required this.time,
     required this.checkoutJasas,
-    // required this.antrian,
+    //required this.antrian,
     required this.status,
     required this.paymentMethod,
     this.noVirtualAccount,
