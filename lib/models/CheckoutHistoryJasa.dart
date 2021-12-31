@@ -5,6 +5,7 @@ enum StatusCheckoutHistoryItem {
   Belum_Datang,
   DiKerjakan,
   Selesai,
+  Ditunggu,
 }
 
 class CheckoutHistoryJasa {
