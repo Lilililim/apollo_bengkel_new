@@ -93,7 +93,7 @@ class _SuccessBuyPageState extends State<SuccessBuyPage> {
                 ),
                 Center(
                   child: Text(
-                    'Order Complete !',
+                    'Pesanan Telah Dibuat',
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 24,
@@ -204,7 +204,7 @@ class _SuccessBuyPageState extends State<SuccessBuyPage> {
                     PaymentMethod.VirtualAccount) ...<Widget>[
                   Center(
                     child: Text(
-                      'Barang akan dikirm ke alamat anda !',
+                      'Barang akan dikirim ke alamat anda !',
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: 18,
