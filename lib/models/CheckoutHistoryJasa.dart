@@ -12,9 +12,10 @@ class CheckoutHistoryJasa {
   CheckoutHistoryJasa({
     this.id,
     required this.userId,
-    required this.time,
+    required this.tglpesen,
     required this.checkoutJasas,
-    //required this.antrian,
+    this.antrian,
+    this.tanggal,
     required this.status,
     required this.paymentMethod,
     this.noVirtualAccount,
@@ -23,9 +24,10 @@ class CheckoutHistoryJasa {
 
   String? id;
   final String userId;
-  final DateTime time;
+  final DateTime tglpesen;
   final List<CheckoutJasa> checkoutJasas;
-  // final int antrian;
+  final DateTime? tanggal;
+  final int? antrian;
   StatusCheckoutHistoryItem status;
   final PaymentMethod paymentMethod;
 
@@ -37,26 +39,28 @@ class CheckoutHistoryJasa {
       CheckoutHistoryJasa(
         id: map['id'],
         userId: map['user_id'],
-        time: DateTime.fromMillisecondsSinceEpoch(map['time']),
+        tglpesen: DateTime.fromMillisecondsSinceEpoch(map['tanggal_pesen']),
         checkoutJasas: (map['checkout_jasa'] as List)
             .map((e) => CheckoutJasa.fromJSON(e))
             .toList(),
-        // antrian: map['no_antrian'],
+        antrian: map['antrian'],
         status: stringToStatus(map['status']),
         paymentMethod: stringToPaymentMethod(map['payment_method']),
         noVirtualAccount: map['no_vc'],
         bank: stringToBank(map['bank']),
+        tanggal: map['tanggaljs']!=null?DateTime.fromMillisecondsSinceEpoch(map['tanggaljs']):null,
       );
 
   Map<String, dynamic> toJSON() => {
         'user_id': userId,
-        'time': time.millisecondsSinceEpoch,
+        'tanggal_pesen': tglpesen.millisecondsSinceEpoch,
         'checkout_jasa': checkoutJasas.map((e) => e.toJSON()).toList(),
-        //'no_antrian': antrian.map((e)=>e.to),
+        'antrian': antrian,
         'status': statusToString(status),
         'payment_method': paymentMethodToString(paymentMethod),
         'no_vc': noVirtualAccount,
         'bank': bankToString(bank),
+        'tanggaljs' : tanggal?.millisecondsSinceEpoch,
       };
 
   static PaymentMethod stringToPaymentMethod(String paymentMethod) {

@@ -114,25 +114,25 @@ class _JasaListPageState extends State<JasaListPage>
             ),*/
             Tab(
               child: Icon(
-                RpgAwesome.meat,
+                FontAwesome5.tint,
                 color: Colors.pink[300],
               ),
             ),
             Tab(
               child: Icon(
-                FontAwesome5.carrot,
+                RpgAwesome.cog_wheel,
                 color: Colors.orange,
               ),
             ),
             Tab(
               child: Icon(
-                FontAwesome5.apple_alt,
+                FontAwesome5.wrench,
                 color: Colors.red,
               ),
             ),
             Tab(
               child: Icon(
-                RpgAwesome.bubbling_potion,
+                FontAwesome5.broom,
                 color: Colors.brown[400],
               ),
             ),

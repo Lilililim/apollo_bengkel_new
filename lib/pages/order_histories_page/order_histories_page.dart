@@ -222,7 +222,7 @@ class _OrderHistoriesPageState extends State<OrderHistoriesPage> {
                             ),
                           ),
                           trailing: Text(
-                            DateFormat('dd/MM/yy').format(e.time),
+                            DateFormat('dd/MM/yy').format(e.tglpesen),
                             style: TextStyle(
                               color: Colors.blue,
                             ),

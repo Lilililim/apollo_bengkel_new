@@ -1,5 +1,5 @@
 import 'package:apollo_bengkel/firebase.dart';
-import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
+//import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/models/Jasa.dart';
@@ -23,7 +23,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     int timestamp1 = 0;
     int? timestamp2;
     DateTime? tglplus1;
-    int jmlantrian = 0;
+    int jmlantrian = 1;
   Future<void> _fetchCurrentCheckoutData() async {
     // ambil current_checkout_item dari user saat ini
     List<CheckoutJasa> currentCheckoutJasa = [];
@@ -58,7 +58,8 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         var checkoutItemJasa = CheckoutItemJasa(
           jasa: jasa,
           amount: item.amount,
-          tanggal: timestamp1!,
+          tanggal: timestamp1,
+          antrian: jmlantrian,
         );
 
         // ambil data download url
@@ -106,7 +107,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         CheckoutJasa(
           itemId: item.jasa.id,
           amount: banyak,
-          tanggal: timestamp1!,
+          tanggal: timestamp1,
           antrian: jmlantrian,
         ),
       );
@@ -131,7 +132,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         _currentCheckoutItemJasa
             .where((e) => e.jasa.id == item.jasa.id)
             .first
-            .tanggal = timestamp1!;
+            .tanggal = timestamp1;
       });
     });
   }
@@ -187,12 +188,14 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
       
   //   }
   void _navigateToConfirmationPage() async {
+    
     if(timestamp1 != 0){
       var email = fireAuth.currentUser!.email;
       var query = firestore.collection('/users').where('email', isEqualTo: email);
     
       List<CheckoutJasa> tempCheckoutJasa = [];
       final List<CheckoutItemJasa> checkoutItemJasas = [];
+    
     // ambil semua checkout item dulu
     await query.get().then((col) => col.docs.first).then((user) async {
       /// ambil semua item kecuali item dengan id dari variable [item]
@@ -203,7 +206,27 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
             return item;
            })
           .toList();
-
+    // await firestore
+    //   .collection('/checkoutHistories')
+    //   // .where('tanggaljs', isGreaterThanOrEqualTo: timestamp1)
+    //   // .where('tanggaljs', isLessThan: timestamp2)
+    //   .get()
+    //   .then(
+    //     (col) async {
+    //       var datas = col.docs;
+    //       if (datas.isNotEmpty){
+    //         jmlantrian = datas.length +1;
+    //       }
+    //       await Future.wait(
+    //         datas.map((element) {
+    //         return element.reference.set({
+    //           'antrian': jmlantrian,
+    //         });
+    //       })
+    //       );
+    //       return jmlantrian;
+    //     }
+    //   );
       /// buat tiap anggotanya ke bentuk map<string, dynamic> agar bisa di save ke firestore
       var newCurrentCheckoutJasa =
           tempCheckoutJasa.map((e) => e.toJSON()).toList();
@@ -215,20 +238,6 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         return tempCheckoutJasa;
     }).then((checkoutJasas) async {
       /// jika sukses, maka update juga banyak [item] di UI (agar total harga ter-update juga)
-      
-        await firestore
-        .collection('/checkoutHistories')
-        .where('tanggaljs', isGreaterThanOrEqualTo: timestamp1)
-        .where('tanggaljs', isLessThan: timestamp2)
-        .get()
-        .then(
-          (col){
-            var datas = col.docs.first.data()['jmldoc'] as List;
-            // var mep = datas.asMap();
-            // mep.keys.toList();
-            jmlantrian = datas.length;
-          }
-        );
         
       Future.wait(checkoutJasas.map((item) async {
       await firestore
@@ -248,7 +257,8 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         var checkoutItemJasa = CheckoutItemJasa(
           jasa: jasa,
           amount: item.amount,
-          tanggal: timestamp1!,
+          tanggal: timestamp1,
+          antrian: jmlantrian,
         );
 
         // ambil data download url
@@ -265,9 +275,9 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
 
         checkoutItemJasas.add(checkoutItemJasa);
         });
+        
       })).then((value) {
       Navigator.pushNamed(context, '/confirmation_page_jasa',
-
         arguments: <String, dynamic>{
           'checkoutItemJasa': checkoutItemJasas,
       });

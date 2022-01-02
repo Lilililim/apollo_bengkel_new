@@ -19,6 +19,7 @@ class CheckoutItemJasa {
     required this.jasa,
     required this.amount,
     required this.tanggal,
+    required this.antrian,
     this.photoDownloadURL = '',
   });
 
@@ -26,4 +27,5 @@ class CheckoutItemJasa {
   String photoDownloadURL = '';
   int amount;
   int tanggal;
+  int antrian;
 }

@@ -1,5 +1,7 @@
 import 'package:apollo_bengkel/firebase.dart';
 import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
+import 'package:apollo_bengkel/models/CheckoutItemData.dart';
+import 'package:apollo_bengkel/models/CheckoutJasa.dart';
 import 'package:apollo_bengkel/models/UserData.dart';
 import 'package:apollo_bengkel/pages/payment_account_jasa/util_js.dart';
 import 'package:apollo_bengkel/utils.dart';
@@ -45,25 +47,23 @@ class _VirtualAccountTabJsState extends State<VirtualAccountTabJs> {
     var checkoutHistoryQuery = firestore.collection('/checkoutHistories');
 
     /// ambil data user
-    await userQuery.get().then((col) => col.docs.first).then((doc) {
+    await userQuery.get().then((col) => col.docs.first).then((doc) async {
       var user = UserData.fromJSON(doc.data());
 
       var checkoutJasa = user.checkoutJasa;
       var dtNow = DateTime.now();
-
+      var convert = checkoutJasa.first.tanggal!=null?DateTime.fromMillisecondsSinceEpoch(checkoutJasa.first.tanggal):null;
       /// bikin CheckoutHistoryItem
       var checkoutItemHistory = CheckoutHistoryJasa(
         userId: doc.id,
-        time: dtNow,
+        tglpesen: dtNow,
         checkoutJasas: checkoutJasa,
         status: StatusCheckoutHistoryItem.Belum_Datang,
         paymentMethod: PaymentMethod.VirtualAccount,
         bank: _currentBank,
         noVirtualAccount: getRandom16Digit(),
+        tanggal: convert,
       );
-
-      return checkoutItemHistory;
-    }).then((checkoutItemHistory) async {
       /// tambahkan checkoutItemHistory ke collection checkoutItemHistories
       await checkoutHistoryQuery
           .add(checkoutItemHistory.toJSON())
@@ -77,11 +77,40 @@ class _VirtualAccountTabJsState extends State<VirtualAccountTabJs> {
           await doc.reference.update({
             'current_checkout_jasa': [],
           });
+          checkoutItemHistory.id = c.id;
         }).then((_) {
           /// lalu navigate ke success_buy_page
-          _navigateToSuccessBuyPage(c.id);
+          
         });
       });
+      return checkoutItemHistory;
+    }).then((checkoutItemHistory) async {
+      int jmlantrian = 0;
+      var filtertgl = checkoutItemHistory.tanggal;
+      var filterkurangdari = checkoutItemHistory.tanggal?.add(Duration (milliseconds: 86400000));
+      await firestore
+      .collection('/checkoutHistories')
+      .where('tanggaljs', isGreaterThanOrEqualTo: filtertgl?.millisecondsSinceEpoch)
+      .where('tanggaljs', isLessThan: filterkurangdari?.millisecondsSinceEpoch)
+      .where('tanggaljs', isNull: false)
+      .get()
+      .then(
+        (col) async {
+          var datas = col.docs;
+          jmlantrian = datas.length;
+          await Future.wait(
+            datas.where((doc
+            )=>doc.id==checkoutItemHistory.id)
+            .map((element) {
+            return element.reference.update({
+              'antrian': jmlantrian,
+            });
+          })
+          );
+          return jmlantrian;
+        }
+      );
+      _navigateToSuccessBuyPage(checkoutItemHistory.id!);
     });
   }
 
@@ -149,7 +178,7 @@ class _VirtualAccountTabJsState extends State<VirtualAccountTabJs> {
               top: 20.0,
             ),
             child: Text(
-              'Langkah Jasa gan',
+              'Langkah',
               style: TextStyle(
                 color: Colors.blue,
                 fontSize: 18,

@@ -43,7 +43,7 @@ class _CashTabJsState extends State<CashTabJs> {
       /// bikin CheckoutHistoryItem
       var checkoutItemHistory = CheckoutHistoryJasa(
         userId: doc.id,
-        time: dtNow,
+        tglpesen: dtNow,
         checkoutJasas: checkoutJasas,
         status: StatusCheckoutHistoryItem.Ditunggu,
         paymentMethod: PaymentMethod.Cash,

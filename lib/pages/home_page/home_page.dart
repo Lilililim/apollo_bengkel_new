@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                         'Ban',
                       ),
                       leading: Icon(
-                        FontAwesome5.carrot,
+                        RpgAwesome.cog_wheel,
                         color: Colors.orange,
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
@@ -283,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                         'Grease CVT',
                       ),
                       leading: Icon(
-                        FontAwesome5.apple_alt,
+                        FontAwesome5.wrench,
                         color: Colors.red,
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
@@ -295,7 +295,7 @@ class _HomePageState extends State<HomePage> {
                         'Oli Gardan',
                       ),
                       leading: Icon(
-                        RpgAwesome.bubbling_potion,
+                        FontAwesome5.broom,
                         color: Colors.brown[400],
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
@@ -503,7 +503,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  FontAwesome5.carrot,
+                                  RpgAwesome.cog_wheel,
                                   color: Colors.orange,
                                 ),
                                 Text(
@@ -547,7 +547,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  FontAwesome5.apple_alt,
+                                  FontAwesome5.wrench,
                                   color: Colors.red,
                                 ),
                                 Text(
@@ -592,7 +592,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  RpgAwesome.bubbling_potion,
+                                  FontAwesome5.broom,
                                   color: Colors.brown[400],
                                 ),
                                 Text(
@@ -746,7 +746,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  RpgAwesome.meat,
+                                  FontAwesome5.tint,
                                   color: Colors.pink[300],
                                 ),
                                 Text(
@@ -790,7 +790,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  FontAwesome5.carrot,
+                                  RpgAwesome.cog_wheel,
                                   color: Colors.orange,
                                 ),
                                 Text(
@@ -834,7 +834,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  FontAwesome5.apple_alt,
+                                  FontAwesome5.wrench,
                                   color: Colors.red,
                                 ),
                                 Text(
@@ -879,7 +879,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Icon(
-                                  RpgAwesome.bubbling_potion,
+                                  FontAwesome5.broom,
                                   color: Colors.brown[400],
                                 ),
                                 Text(

@@ -10,23 +10,27 @@ class SuccessBuyJsPage extends StatefulWidget {
   const SuccessBuyJsPage({
     Key? key,
     required this.checkoutHistoryItemId,
+    //required this.checkoutHistoryJasa,
   }) : super(key: key);
 
   final String checkoutHistoryItemId;
-
+  //final CheckoutHistoryJasa checkoutHistoryJasa;
+  
   @override
   _SuccessBuyPageJsState createState() => _SuccessBuyPageJsState(
         checkoutHistoryItemId: checkoutHistoryItemId,
+        //checkoutHistoryJasa: checkoutHistoryJasa,
       );
 } //tes push
 
 class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
   _SuccessBuyPageJsState({
     required this.checkoutHistoryItemId,
+    //required this.checkoutHistoryJasa,
   });
 
   final String checkoutHistoryItemId;
-
+  //final CheckoutHistoryJasa checkoutHistoryJasa;
   void _goToHomePage() {
     Navigator.pushReplacementNamed(context, '/home_page');
   }
@@ -73,6 +77,7 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
   }
 
   Widget _body() {
+    //var noAntri = checkoutHistoryJasa.antrian;
     return Padding(
       padding: const EdgeInsets.only(
         top: 40.0,
@@ -93,7 +98,7 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
                 ),
                 Center(
                   child: Text(
-                    'Order Complete !',
+                    'Order Complete !!',
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 24,

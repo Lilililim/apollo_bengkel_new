@@ -60,6 +60,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
               ),
               amount: checkoutItems[e.key].amount,
               tanggal: checkoutItems[e.key].tanggal,
+              antrian: checkoutItems[e.key].antrian,
             );
 
             /// ambil url foto dari firebase storage
@@ -128,6 +129,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
     var status = CheckoutHistoryJasa.statusToString(checkoutHistoryJasa.status);
     var bank = CheckoutHistoryJasa.bankToString(checkoutHistoryJasa.bank);
     var noVA = checkoutHistoryJasa.noVirtualAccount;
+    var noAntri = checkoutHistoryJasa.antrian;
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -217,6 +219,33 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                               ),
                               Text(
                                 snapshot.data!.alamat,
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: 10.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Antrian: ',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                noAntri.toString(),
                                 style: TextStyle(
                                   color: Colors.blue,
                                   fontSize: 18,
