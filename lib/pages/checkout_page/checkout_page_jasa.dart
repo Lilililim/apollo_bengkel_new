@@ -107,6 +107,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
           itemId: item.jasa.id,
           amount: banyak,
           tanggal: timestamp1!,
+          antrian: jmlantrian,
         ),
       );
 
