@@ -21,7 +21,7 @@ class _PaymentMethodPageJsState extends State<PaymentMethodPageJs>
   void initState() {
     super.initState();
     _tabController = TabController(
-      length: 2,
+      length: 1,
       initialIndex: 0,
       vsync: this,
     );
@@ -67,14 +67,14 @@ class _PaymentMethodPageJsState extends State<PaymentMethodPageJs>
                 ),
               ),
             ),
-            Tab(
-              child: Text(
-                'Cash',
-                style: TextStyle(
-                  color: Colors.blue,
-                ),
-              ),
-            ),
+            // Tab(
+            //   child: Text(
+            //     'Cash',
+            //     style: TextStyle(
+            //       color: Colors.blue,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         preferredSize: Size.fromHeight(
@@ -89,7 +89,7 @@ class _PaymentMethodPageJsState extends State<PaymentMethodPageJs>
       controller: _tabController,
       children: <Widget>[
         VirtualAccountTabJs(),
-        CashTabJs(),
+        //CashTabJs(),
       ],
     );
   }

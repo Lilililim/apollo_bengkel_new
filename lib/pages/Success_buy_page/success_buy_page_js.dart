@@ -10,27 +10,20 @@ class SuccessBuyJsPage extends StatefulWidget {
   const SuccessBuyJsPage({
     Key? key,
     required this.checkoutHistoryItemId,
-    //required this.checkoutHistoryJasa,
+    required this.antrian,
   }) : super(key: key);
 
   final String checkoutHistoryItemId;
-  //final CheckoutHistoryJasa checkoutHistoryJasa;
+  final int antrian;
   
   @override
   _SuccessBuyPageJsState createState() => _SuccessBuyPageJsState(
-        checkoutHistoryItemId: checkoutHistoryItemId,
-        //checkoutHistoryJasa: checkoutHistoryJasa,
+        
       );
 } //tes push
 
 class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
-  _SuccessBuyPageJsState({
-    required this.checkoutHistoryItemId,
-    //required this.checkoutHistoryJasa,
-  });
-
-  final String checkoutHistoryItemId;
-  //final CheckoutHistoryJasa checkoutHistoryJasa;
+  
   void _goToHomePage() {
     Navigator.pushReplacementNamed(context, '/home_page');
   }
@@ -50,8 +43,9 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
   }
 
   Future<CheckoutHistoryJasa?> _getCheckoutHistoryItem() async {
+    widget.checkoutHistoryItemId;
     var docRef =
-        firestore.collection('/checkoutHistories').doc(checkoutHistoryItemId);
+        firestore.collection('/checkoutHistories').doc(widget.checkoutHistoryItemId);
 
     return await docRef.get().then((d) {
       if (d.exists) {
@@ -77,7 +71,7 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
   }
 
   Widget _body() {
-    //var noAntri = checkoutHistoryJasa.antrian;
+    var noAntri = widget.antrian;
     return Padding(
       padding: const EdgeInsets.only(
         top: 40.0,
@@ -99,6 +93,15 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
                 Center(
                   child: Text(
                     'Order Complete !!',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    'No Antrian: ' + noAntri.toString(),
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 24,

@@ -16,20 +16,21 @@ class VirtualAccountTabJs extends StatefulWidget {
 
 class _VirtualAccountTabJsState extends State<VirtualAccountTabJs> {
   Bank? _currentBank = Bank.BNI;
-
   void _setBank(Bank? bank) {
     setState(() {
       _currentBank = bank;
+      
     });
   }
 
-  void _navigateToSuccessBuyPage(String checkoutHistoryItemId) {
+  void _navigateToSuccessBuyPage(String checkoutHistoryItemId, int antrian) {
     Navigator.pushNamedAndRemoveUntil(
       context,
       '/success_buy_page_js',
       (_) => false,
       arguments: <String, dynamic>{
-        'checkoutHistoryItemId': checkoutHistoryItemId
+        'checkoutHistoryItemId': checkoutHistoryItemId,
+        'antrian': antrian,
       },
     );
   }
@@ -110,7 +111,8 @@ class _VirtualAccountTabJsState extends State<VirtualAccountTabJs> {
           return jmlantrian;
         }
       );
-      _navigateToSuccessBuyPage(checkoutItemHistory.id!);
+      
+      _navigateToSuccessBuyPage(checkoutItemHistory.id!, jmlantrian);
     });
   }
 

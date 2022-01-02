@@ -1,6 +1,7 @@
 import 'package:apollo_bengkel/models/CheckoutHistoryItem.dart';
 import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
+import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
 import 'package:apollo_bengkel/pages/checkout_page/checkout_page.dart';
 import 'package:apollo_bengkel/pages/checkout_page/checkout_page_jasa.dart';
 import 'package:apollo_bengkel/pages/confirmation_page/confirmation_page.dart';
@@ -97,10 +98,12 @@ Route? onGenerateRoute(RouteSettings settings) {
     case '/success_buy_page_js':
       var args = (settings.arguments as Map<String, dynamic>);
       var checkoutHistoryItemId = args['checkoutHistoryItemId'] as String;
+      var antrian = args['antrian'] as int;
 
       return MaterialPageRoute(
         builder: (_) => SuccessBuyJsPage(
           checkoutHistoryItemId: checkoutHistoryItemId,
+          antrian: antrian,
         ),
       );
 

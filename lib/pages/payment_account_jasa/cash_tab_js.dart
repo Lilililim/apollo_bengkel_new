@@ -13,11 +13,12 @@ class CashTabJs extends StatefulWidget {
 }
 
 class _CashTabJsState extends State<CashTabJs> {
-  void _navigateToSuccessBuyPage(String checkoutHistoryItemId) {
+  void _navigateToSuccessBuyPage(String checkoutHistoryItemId, int antrian) {
     Navigator.pushNamedAndRemoveUntil(
         context, '/success_buy_page_js', (_) => false,
         arguments: <String, dynamic>{
-          'checkoutHistoryItemId': checkoutHistoryItemId
+          'checkoutHistoryItemId': checkoutHistoryItemId,
+          'antrian': antrian,
         });
   }
 
@@ -63,9 +64,38 @@ class _CashTabJsState extends State<CashTabJs> {
           });
         }).then((_) {
           /// lalu navigate ke success_buy_page
-          _navigateToSuccessBuyPage(c.id);
+          //_navigateToSuccessBuyPage(c.id);
         });
       });
+      return checkoutItemHistory;
+    }).then((checkoutItemHistory) async {
+      int jmlantrian = 0;
+      var filtertgl = checkoutItemHistory.tanggal;
+      var filterkurangdari = checkoutItemHistory.tanggal?.add(Duration (milliseconds: 86400000));
+      await firestore
+      .collection('/checkoutHistories')
+      .where('tanggaljs', isGreaterThanOrEqualTo: filtertgl?.millisecondsSinceEpoch)
+      .where('tanggaljs', isLessThan: filterkurangdari?.millisecondsSinceEpoch)
+      .where('tanggaljs', isNull: false)
+      .get()
+      .then(
+        (col) async {
+          var datas = col.docs;
+          jmlantrian = datas.length;
+          await Future.wait(
+            datas.where((doc
+            )=>doc.id==checkoutItemHistory.id)
+            .map((element) {
+            return element.reference.update({
+              'antrian': jmlantrian,
+            });
+          })
+          );
+          return jmlantrian;
+        }
+      );
+      
+      _navigateToSuccessBuyPage(checkoutItemHistory.id!, jmlantrian);
     });
   }
 
