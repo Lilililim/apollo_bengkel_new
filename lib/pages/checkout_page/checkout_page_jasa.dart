@@ -1,4 +1,5 @@
 import 'package:apollo_bengkel/firebase.dart';
+import 'package:apollo_bengkel/models/CheckoutHistoryJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutJasa.dart';
 import 'package:apollo_bengkel/models/CheckoutItemData.dart';
 import 'package:apollo_bengkel/models/Jasa.dart';
@@ -21,6 +22,8 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     final DateTime dtNow = DateTime.now();// untuk ambil data checkout awal dan pada saat refresh halaman
     int timestamp1 = 0;
     int? timestamp2;
+    DateTime? tglplus1;
+    int jmlantrian = 0;
   Future<void> _fetchCurrentCheckoutData() async {
     // ambil current_checkout_item dari user saat ini
     List<CheckoutJasa> currentCheckoutJasa = [];
@@ -173,6 +176,15 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     return;
   }
 
+  // void countDocument() async {
+  //   QuerySnapshot _myDoc = await firestore
+  //       .collection('/checkoutHistories')
+  //       .where('tanggaljs', isGreaterThanOrEqualTo: timestamp1)
+  //       .where('tanggaljs', isLessThan: timestamp2)
+  //       .get();
+  //   List<DocumentSnapshot> _myDocCount = _myDoc.documents;
+      
+  //   }
   void _navigateToConfirmationPage() async {
     if(timestamp1 != 0){
       var email = fireAuth.currentUser!.email;
@@ -200,10 +212,23 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
         'current_checkout_jasa': newCurrentCheckoutJasa,
       });
         return tempCheckoutJasa;
-    }).then((checkoutJasas) {
+    }).then((checkoutJasas) async {
       /// jika sukses, maka update juga banyak [item] di UI (agar total harga ter-update juga)
       
-      
+        await firestore
+        .collection('/checkoutHistories')
+        .where('tanggaljs', isGreaterThanOrEqualTo: timestamp1)
+        .where('tanggaljs', isLessThan: timestamp2)
+        .get()
+        .then(
+          (col){
+            var datas = col.docs.first.data()['jmldoc'] as List;
+            // var mep = datas.asMap();
+            // mep.keys.toList();
+            jmlantrian = datas.length;
+          }
+        );
+        
       Future.wait(checkoutJasas.map((item) async {
       await firestore
           .collection('/jasa')
@@ -391,7 +416,9 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
                       setState(() {
                         _dateTime = _newDate;
                         timestamp1 = _newDate.millisecondsSinceEpoch;
-                        //timestamp2 = timestamp1;
+                        tglplus1 = DateTime.fromMillisecondsSinceEpoch(timestamp1);
+                        tglplus1 = tglplus1!.add(Duration(days: 1));
+                        timestamp2 = tglplus1!.millisecondsSinceEpoch;
                       });
                     }
                 },

@@ -242,17 +242,18 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                                   // fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Text(
-                                DateFormat('dd/MM/yy').format(
-                                    DateTime.fromMillisecondsSinceEpoch(
-                                        _checkoutItemJasas.first.tanggal)),
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  // fontWeight: FontWeight.bold,
+                              if(_checkoutItemJasas.isNotEmpty)
+                                Text(
+                                  DateFormat('dd/MM/yyyy').format(
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                          _checkoutItemJasas.first.tanggal)),
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    // fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
