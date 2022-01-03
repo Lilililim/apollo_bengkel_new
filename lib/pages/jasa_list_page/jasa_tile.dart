@@ -33,7 +33,7 @@ class _JasaTileState extends State<JasaTile> {
     var kategori = Jasa.kategoriToString(jasa.kategoriJasa);
     var photoName = jasa.photoNamejs;
     var ref = firestorage.refFromURL(
-       'gs://apolo-bengkel.appspot.com/app/foto_produk/$kategori/$photoName');
+       'gs://apolo-bengkel.appspot.com/app/foto_jasa/$kategori/$photoName');
     return ref.getDownloadURL();
 
     //return Future.value('');
