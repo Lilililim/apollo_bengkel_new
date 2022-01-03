@@ -511,7 +511,7 @@ class _HomePageState extends State<HomePage> {
                                   'Grease CVT',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 12,
                                     color: Colors.red,
                                   ),
                                   maxLines: 2,
@@ -812,7 +812,7 @@ class _HomePageState extends State<HomePage> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.red,
-                                    fontSize: 10,
+                                    fontSize: 12,
                                   ),
                                   maxLines: 2,
                                   overflow: TextOverflow.fade,
@@ -860,7 +860,7 @@ class _HomePageState extends State<HomePage> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.brown[400],
-                                    fontSize: 10,
+                                    fontSize: 12,
                                   ),
                                   maxLines: 2,
                                   overflow: TextOverflow.fade,
