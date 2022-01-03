@@ -22,7 +22,6 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
   bool isButtonActive = true;
   DateTime? _dateTime = DateTime.now(); //buat milih tanggal jasa
   List<CheckoutItemJasa> checkoutItemJasa = [];
-  List<CheckoutItemJasa> _checkoutItemJasas = [];
   final DateTime dtNow = DateTime.now();
 
   @override
