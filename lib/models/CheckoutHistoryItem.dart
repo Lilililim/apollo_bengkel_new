@@ -6,6 +6,11 @@ enum StatusCheckoutHistoryItem {
   Dikirim,
   Sampai,
   dibatalkan,
+  Belum_Datang,
+  Sudah_Datang,
+  DiKerjakan,
+  Selesai,
+  Ditunggu,
 }
 
 class CheckoutHistoryItem {
