@@ -862,7 +862,7 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.brown[400],
                                     fontSize: 10,
                                   ),
-                                  maxLines: 4,
+                                  maxLines: 2,
                                   overflow: TextOverflow.fade,
                                 ),
                               ],
