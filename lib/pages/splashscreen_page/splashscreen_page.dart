@@ -35,13 +35,13 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           child: Column(
             children: [
               Container(
-                height: 150.0,
-                width: 150.0,
+                height: 300.0,
+                width: 300.0,
                 margin: const EdgeInsets.only(
                   bottom: 50.0,
                 ),
                 child: Image.asset(
-                  'assets/logo.png',
+                  'assets/logo_mitra.png',
                   fit: BoxFit.contain,
                 ),
               ),

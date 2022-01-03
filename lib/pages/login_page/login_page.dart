@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                         bottom: 50.0,
                       ),
                       child: Image.asset(
-                        'assets/logo.png',
+                        'assets/logo_mitra.png',
                         fit: BoxFit.contain,
                       ),
                     ),
