@@ -37,11 +37,12 @@ class _HomePageState extends State<HomePage> {
           'kategoriProduk': kategoriProduk,
         }).then((_) => setState(() {}));
 
-        /*Navigator.pushNamed(context, '/jasa_list_page',
+    /*Navigator.pushNamed(context, '/jasa_list_page',
         arguments: <String, dynamic>{
           'kategoriProduk': kategoriProduk,
         }).then((_) => setState(() {}));*/
   }
+
   void _navigateToJasaListPage(
     KategoriJasaListPage kategoriJasa,
   ) {
@@ -50,6 +51,7 @@ class _HomePageState extends State<HomePage> {
           'kategoriJasa': kategoriJasa,
         }).then((_) => setState(() {}));
   }
+
   /*{
     Navigator.pushNamed(context, '/jasa_list_page',
         arguments: <String, dynamic>{
@@ -217,7 +219,8 @@ class _HomePageState extends State<HomePage> {
               return Container();
             },
           ),
-          Flexible( //sidebar
+          Flexible(
+            //sidebar
             child: ListView(
               children: [
                 ListTile(
@@ -244,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     ListTile(
                       title: Text(
-                        'All',
+                        'Produk',
                       ),
                       leading: Icon(
                         FontAwesome.food,
@@ -252,54 +255,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onTap: () => _navigateToProductListPageWithPop(
                         KategoriProductListPage.All,
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Oli',
-                      ),
-                      leading: Icon(
-                        FontAwesome5.tint,
-                        color: Colors.pink[300],
-                      ),
-                      onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Oli,
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Ban',
-                      ),
-                      leading: Icon(
-                        RpgAwesome.cog_wheel,
-                        color: Colors.orange,
-                      ),
-                      onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Ban,
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Grease CVT',
-                      ),
-                      leading: Icon(
-                        FontAwesome5.wrench,
-                        color: Colors.red,
-                      ),
-                      onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Grease_cvt,
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Oli Gardan',
-                      ),
-                      leading: Icon(
-                        FontAwesome5.broom,
-                        color: Colors.brown[400],
-                      ),
-                      onTap: () => _navigateToProductListPageWithPop(
-                        KategoriProductListPage.Oli_gardan,
                       ),
                     ),
                     ListTile(
@@ -385,8 +340,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               /// Section Produk
               Padding(
-                padding: const EdgeInsets.only(
-                ),
+                padding: const EdgeInsets.only(),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10.0),
                   child: Row(
@@ -481,7 +435,7 @@ class _HomePageState extends State<HomePage> {
                         width: 70,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color:  Colors.orange,
+                            color: Colors.orange,
                           ),
                           borderRadius: BorderRadius.all(
                             Radius.circular(
@@ -497,7 +451,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           color: Colors.white,
                           child: InkWell(
-                            splashColor:  Colors.orange,
+                            splashColor: Colors.orange,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -508,9 +462,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   'Ban',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color:  Colors.orange,
+                                    color: Colors.orange,
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
                               ],
                             ),
@@ -552,10 +509,13 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   'Grease CVT',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 10,
                                     color: Colors.red,
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
                               ],
                             ),
@@ -597,9 +557,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   'Oli Gardan',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.brown[400],
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
                               ],
                             ),
@@ -669,6 +632,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+
               /// Section Jasa
               Padding(
                 padding: const EdgeInsets.only(
@@ -751,9 +715,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   'Ganti Oli',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.pink[300],
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
                               ],
                             ),
@@ -795,9 +762,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   'Ganti Ban',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.orange,
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
                               ],
                             ),
@@ -839,10 +809,13 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   'Service Injeksi',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.red,
                                     fontSize: 10,
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
                               ],
                             ),
@@ -884,10 +857,13 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   'Service CVT',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.brown[400],
                                     fontSize: 10,
                                   ),
+                                  maxLines: 4,
+                                  overflow: TextOverflow.fade,
                                 ),
                               ],
                             ),
@@ -942,7 +918,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),*/
                     ].map(
-                          (e) {
+                      (e) {
                         return Padding(
                           padding: const EdgeInsets.all(
                             12.0,
