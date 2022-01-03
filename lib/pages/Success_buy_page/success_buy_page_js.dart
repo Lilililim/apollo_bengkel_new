@@ -108,6 +108,23 @@ class _SuccessBuyPageJsState extends State<SuccessBuyJsPage> {
                     ),
                   ),
                 ),
+                Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
+                    ),
+                  child: Center(
+                      child: Text(
+                        'Silahkan datang pada tanggal yang sudah dipesan.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 18,
+                        ),
+                      maxLines: 4,
+                      overflow: TextOverflow.fade,
+                      ),
+                    ),
+                  ),
                 SizedBox(
                   height: 80,
                 ),

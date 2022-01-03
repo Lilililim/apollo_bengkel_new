@@ -148,33 +148,38 @@ class _SuccessBuyPageState extends State<SuccessBuyPage> {
                         ),
                       ),
                     ),
+                  ),Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
+                    ),
+                  child: Center(
+                      child: Text(
+                        'Jika Sudah Membayar Silahkan Kirim bukti Pembayaran Ke nomor dibawah ini ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 18,
+                        ),
+                      maxLines: 4,
+                      overflow: TextOverflow.fade,
+                      ),
+                    ),
                   ),
-                  Center(
-                      child: Text(
-                        'Jika Sudah Membayar Silahkan Kirim ',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                        ),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
                     ),
-                    Center(
-                      child: Text(
-                        'Bukti Pembayaran Ke nomor dibawah ini ',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  Center(
+                 child: Center(
                     child: Text(
                       '085161692108',
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: 18, 
                       ),
+                      maxLines: 3,
+                      overflow: TextOverflow.fade,
                     ),
+                  ),
                   ),
                 Padding(
                     padding: const EdgeInsets.only(
@@ -182,23 +187,17 @@ class _SuccessBuyPageState extends State<SuccessBuyPage> {
                     ),
                     child: Center(
                       child: Text(
-                        'Harap dibayar sebelum 2 jam',
+                        'Harap dibayar sebelum 2 jam untuk mempermudah pengiriman',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 18,
                         ),
+                      maxLines: 3,
+                      overflow: TextOverflow.fade,
                       ),
                     ),
                   ),
-                  Center(
-                    child: Text(
-                      'untuk mempermudah pengiriman',
-                      style: TextStyle(
-                         color: Colors.blue,
-                          fontSize: 18,
-                      ),
-                    ),
-                  )
                 ],
                 if (item.paymentMethod !=
                     PaymentMethod.VirtualAccount) ...<Widget>[

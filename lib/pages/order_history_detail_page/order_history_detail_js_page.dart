@@ -60,7 +60,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
               ),
               amount: checkoutItems[e.key].amount,
               tanggal: checkoutItems[e.key].tanggal,
-              antrian: checkoutItems[e.key].antrian,
+              //antrian: checkoutItems[e.key].antrian,
             );
 
             /// ambil url foto dari firebase storage

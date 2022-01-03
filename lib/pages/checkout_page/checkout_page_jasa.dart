@@ -23,7 +23,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
     int timestamp1 = 0;
     int? timestamp2;
     DateTime? tglplus1;
-    int jmlantrian = 1;
+    //int jmlantrian = 1;
   Future<void> _fetchCurrentCheckoutData() async {
     // ambil current_checkout_item dari user saat ini
     List<CheckoutJasa> currentCheckoutJasa = [];
@@ -59,7 +59,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
           jasa: jasa,
           amount: item.amount,
           tanggal: timestamp1,
-          antrian: jmlantrian,
+          //antrian: jmlantrian,
         );
 
         // ambil data download url
@@ -108,7 +108,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
           itemId: item.jasa.id,
           amount: banyak,
           tanggal: timestamp1,
-          antrian: jmlantrian,
+          //antrian: jmlantrian,
         ),
       );
 
@@ -258,7 +258,7 @@ class _CheckoutPageJasaState extends State<CheckoutPageJasa> {
           jasa: jasa,
           amount: item.amount,
           tanggal: timestamp1,
-          antrian: jmlantrian,
+          //antrian: jmlantrian,
         );
 
         // ambil data download url

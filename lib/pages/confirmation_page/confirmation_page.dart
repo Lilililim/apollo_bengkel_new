@@ -204,7 +204,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                               top: 20.0,
                             ),
                             child: Text(
-                              'Alamat :',
+                              'Alamat penerima :',
                               style: TextStyle(
                                 color: Colors.blue,
                                 fontSize: 18,
@@ -246,7 +246,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                     top: 20.0,
                   ),
                   child: Text(
-                    'Tanggal :',
+                    'Tanggal pemesanan :',
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 18,
