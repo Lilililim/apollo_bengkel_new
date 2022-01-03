@@ -22,6 +22,7 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
   bool isButtonActive = true;
   DateTime? _dateTime = DateTime.now(); //buat milih tanggal jasa
   List<CheckoutItemJasa> checkoutItemJasa = [];
+  List<CheckoutItemJasa> _checkoutItemJasas = [];
   final DateTime dtNow = DateTime.now();
 
   @override
@@ -263,6 +264,37 @@ class _ConfirmationPageJasaState extends State<ConfirmationPageJasa> {
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10.0,
+                bottom: 10.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Tanggal Booking: ',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 18,
+                      // fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (checkoutItemJasa.isNotEmpty)
+                    Text(
+                      DateFormat('dd MMMM yyyy').format(
+                          DateTime.fromMillisecondsSinceEpoch(
+                              checkoutItemJasa.first.tanggal)),
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                ],
+              ),
             ),
             Container(
               height: 40,

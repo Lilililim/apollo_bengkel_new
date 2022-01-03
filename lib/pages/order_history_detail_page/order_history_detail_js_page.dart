@@ -273,7 +273,7 @@ class _OrderHistoryDetailPageJsState extends State<OrderHistoryDetailPageJs> {
                               ),
                               if(_checkoutItemJasas.isNotEmpty)
                                 Text(
-                                  DateFormat('dd/MM/yyyy').format(
+                                  DateFormat('dd/MMMM/yyyy').format(
                                       DateTime.fromMillisecondsSinceEpoch(
                                           _checkoutItemJasas.first.tanggal)),
                                   style: TextStyle(
