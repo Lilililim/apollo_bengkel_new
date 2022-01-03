@@ -5,7 +5,7 @@ enum StatusCheckoutHistoryItem {
   Menunggu_Pembayaran,
   Dikirim,
   Sampai,
-  dibatalkan,
+  Dibatalkan,
   Belum_Datang,
   Sudah_Datang,
   DiKerjakan,
